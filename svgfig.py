@@ -162,6 +162,12 @@ def toward(start, dist, end):
 
 class Box(object):
     def __init__(self, args):
+        other_box = poparg(args, box=None)
+        if other_box is not None:
+            # Copy all the attributes of the other box.
+            self.__dict__.update(other_box.__dict__)
+            return
+
         size = poparg(args, size=None)
         assert size, "Have to specify a size!"
 
@@ -256,7 +262,7 @@ class PyFig(SvgFig):
         class_ = add_class("list", class_)
         boxes = []
         for text in texts:
-            b = self.rect(center=box.center, size=box.size, class_=class_, text=text, **args)
+            b = self.rect(box=box, class_=class_, text=text, **args)
             boxes.append(b)
             box.translate(box.w, 0)
         return boxes
@@ -272,7 +278,8 @@ class PyFig(SvgFig):
         box = self.rect(class_=rclass, rx=20, ry=20, **args)
         tclass = add_class("framelabel", class_)
         if self.should_draw(box):
-            self.text_for_box(text, box=Box({'center':(box.cx, box.top+25), 'size':(box.w, 25)}), class_=tclass)
+            text_box = Box({'center':(box.cx, box.top+25), 'size':(box.w, 25)})
+            self.text_for_box(text, box=text_box, class_=tclass)
         return box
 
 
