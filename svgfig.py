@@ -53,23 +53,16 @@ class SvgFig(object):
     def tostring(self):
         return self.dwg.tostring()
 
-    def should_draw(self, args):
-        rise = poparg(args, rise=0)
-        set = poparg(args, set=999)
-        should_draw = poparg(args, should_draw=None)
-
-        if should_draw is not None:
-            return should_draw
-
+    def should_draw(self, box):
         if self.frame_num is None:
             return True
 
-        return rise <= self.frame_num < set
+        return box.rise <= self.frame_num < box.set
 
     def rect(self, **args):
         box = Box(args)
         text = poparg(args, text=None)
-        if self.should_draw(args):
+        if self.should_draw(box):
             r = self.dwg.rect(
                 insert=(box.left, box.top),
                 size=box.size,
@@ -83,7 +76,7 @@ class SvgFig(object):
     def circle(self, **args):
         box = Box(args)
         text = poparg(args, text=None)
-        if self.should_draw(args):
+        if self.should_draw(box):
             c = self.dwg.circle(
                 center=box.center,
                 r=box.size[0]/2,
@@ -95,7 +88,7 @@ class SvgFig(object):
         return box
 
     def text_for_box(self, text, box, **args):
-        if text and self.should_draw(args):
+        if text and self.should_draw(box):
             t = self.dwg.text(text, insert=box.center, text_anchor="middle", dy=[".3em"], **args)
             self.dwg.add(t)
 
@@ -105,7 +98,12 @@ class SvgFig(object):
         self.dwg.add(l)
 
     def connect(self, start, startdir, end, enddir, jump=None, **args):
-        if self.should_draw(args):
+        # Bleh: hack to get should_draw info from args.
+        args['center'] = start
+        args['size'] = (0,0)
+        should_draw_box = Box(args)
+
+        if self.should_draw(should_draw_box):
             if jump is None:
                 jump = distance(start, end) / 4
             start_jump = offset(start, startdir, jump)
@@ -201,6 +199,9 @@ class Box(object):
         self.cx, self.cy = center
         self.w, self.h = size
 
+        self.rise = poparg(args, rise=0)
+        self.set = poparg(args, set=999999)
+
     def translate(self, dx, dy):
         self.cx += dx
         self.cy += dy
@@ -261,16 +262,17 @@ class PyFig(SvgFig):
         return boxes
 
     def reference(self, name, val, **args):
-        self.connect(name.east, 0, val.west, 0, class_="arrow", **args)
+        if self.should_draw(name) and self.should_draw(val):
+            self.connect(name.east, 0, val.west, 0, class_="arrow", **args)
 
     def frame(self, **args):
         text = poparg(args, text=None)
         class_ = poparg(args, class_=None)
-        should_draw = self.should_draw(args)
         rclass = add_class("frame", class_)
-        box = self.rect(class_=rclass, rx=20, ry=20, should_draw=should_draw, **args)
+        box = self.rect(class_=rclass, rx=20, ry=20, **args)
         tclass = add_class("framelabel", class_)
-        self.text_for_box(text, box=Box({'center':(box.cx, box.top+25), 'size':(box.w, 25)}), class_=tclass, should_draw=should_draw)
+        if self.should_draw(box):
+            self.text_for_box(text, box=Box({'center':(box.cx, box.top+25), 'size':(box.w, 25)}), class_=tclass)
         return box
 
 
