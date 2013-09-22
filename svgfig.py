@@ -19,13 +19,8 @@ class SvgFig(object):
 
         self.dwg = svgwrite.Drawing(debug=True, size=size, **extra)
 
-        # Define our arrow.
-        self.arrow = self.dwg.marker(
-            insert=(10,5), size=(10,10), orient="auto",
-        )
-        self.arrow.viewbox(0, 0, 10, 10)
-        self.arrow.add(self.dwg.path(d="M 0,0 L 10,5 L 0,10 L 1,5 z", stroke="none", fill="black"))
-        self.dwg.defs.add(self.arrow)
+        self._arrow = None
+        self._dot = None
 
         # Draw a grid if desired.
         if self.draw_grid:
@@ -49,6 +44,30 @@ class SvgFig(object):
                 grid.add(self.dwg.text(str(y), insert=(2, y+7), class_="number"))
                 for d in range(0, 100, 10):
                     grid.add(self.dwg.polyline([(0, y+d), (w, y+d)], class_=lineclass(d)))
+
+    @property
+    def ARROW(self):
+        if self._arrow is None:
+            # Define our arrow.
+            self._arrow = self.dwg.marker(
+                insert=(10,5), size=(10,10), orient="auto",
+            )
+            self._arrow.viewbox(0, 0, 10, 10)
+            self._arrow.add(self.dwg.path(d="M 0,0 L 10,5 L 0,10 L 1,5 z", stroke="none", fill="black"))
+            self.dwg.defs.add(self._arrow)
+        return self._arrow
+
+    @property
+    def DOT(self):
+        if self._dot is None:
+            # Define our dot.
+            self._dot = self.dwg.marker(
+                insert=(2,2), size=(4,4), orient="auto",
+            )
+            self._dot.viewbox(0, 0, 4, 4)
+            self._dot.add(self.dwg.circle(center=(2,2), r=2, fill="black"))
+            self.dwg.defs.add(self._dot)
+        return self._dot
 
     def tostring(self):
         return self.dwg.tostring()
@@ -87,6 +106,11 @@ class SvgFig(object):
             self.text_for_box(text, box)
         return box
 
+    def pill(self, **args):
+        size = args.get('size')
+        rad = size[1]/2
+        return self.rect(rx=rad, ry=rad, **args)
+
     def text_for_box(self, text, box, **args):
         if text and self.should_draw(box):
             t = self.dwg.text(text, insert=box.center, text_anchor="middle", dy=[".3em"], **args)
@@ -94,10 +118,10 @@ class SvgFig(object):
 
     def line(self, start, end, **extra):
         l = self.dwg.polyline([start, end], **extra)
-        l['marker-end'] = self.arrow.get_funciri()
+        l['marker-end'] = self.ARROW.get_funciri()
         self.dwg.add(l)
 
-    def connect(self, start, startdir, end, enddir, jump=None, **args):
+    def connect(self, start, startdir, end, enddir, jump=None, start_marker=None, **args):
         # Bleh: hack to get should_draw info from args.
         args['center'] = start
         args['size'] = (0,0)
@@ -118,9 +142,21 @@ class SvgFig(object):
             pathops.append(pathop("C", post_mid, end_jump, end))
 
             p = self.dwg.path(" ".join(pathops), fill="none", **args)
-            p['marker-end'] = self.arrow.get_funciri()
+            p['marker-end'] = self.ARROW.get_funciri()
+            if start_marker:
+                p['marker-start'] = start_marker.get_funciri()
             self.dwg.add(p)
 
+    def highlight(self, box, **args):
+        """Draw some kind of highlight around `box`."""
+        args['center'] = box.center
+        args['size'] = box.size
+        should_draw_box = Box(args)
+
+        if self.should_draw(should_draw_box):
+            padding = 10
+            highlight_size = (box.size[0] + padding, box.size[1] + padding)
+            self.rect(center=box.center, size=highlight_size, rx=5, ry=5, class_="highlight")
 
 
 def pathop(op, *coords):
@@ -246,6 +282,10 @@ class Box(object):
         return self.left, self.cy
 
 class PyFig(SvgFig):
+    def __init__(self, layout=None, **kwargs):
+        super(PyFig, self).__init__(**kwargs)
+        self.layout = layout
+
     def name(self, **args):
         class_ = add_class("name", poparg(args, class_=None))
         return self.rect(class_=class_, **args)
@@ -254,6 +294,10 @@ class PyFig(SvgFig):
         defarg(args, size=(50,50))
         class_ = add_class("int value", poparg(args, class_=None))
         return self.circle(class_=class_, **args)
+
+    def string(self, **args):
+        class_ = add_class("string value", poparg(args, class_=None))
+        return self.pill(class_=class_, **args)
 
     def list(self, **args):
         texts = poparg(args, texts=['x', 'y', 'z'])
