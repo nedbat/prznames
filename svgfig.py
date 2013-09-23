@@ -8,16 +8,26 @@ import svgwrite
 class SvgFig(object):
 
     draw_grid = False
+    label_frames = False
 
     @classmethod
-    def set_options(cls, draw_grid=None):
+    def set_options(cls, draw_grid=None, label_frames=None):
         if draw_grid is not None:
             cls.draw_grid = draw_grid
+        if label_frames is not None:
+            cls.label_frames = label_frames
 
-    def __init__(self, size, frame_num=None, **extra):
+    def __init__(self, size, frame_num=None, scale=None, **extra):
         self.frame_num = frame_num
 
         self.dwg = svgwrite.Drawing(debug=True, size=size, **extra)
+
+        if scale:
+            self.root = self.dwg.g()
+            self.root.scale(scale)
+            self.dwg.add(self.root)
+        else:
+            self.root = self.dwg
 
         self._arrow = None
         self._dot = None
@@ -44,6 +54,9 @@ class SvgFig(object):
                 grid.add(self.dwg.text(str(y), insert=(2, y+7), class_="number"))
                 for d in range(0, 100, 10):
                     grid.add(self.dwg.polyline([(0, y+d), (w, y+d)], class_=lineclass(d)))
+
+        if self.label_frames:
+            self.dwg.add(self.dwg.text(str(frame_num), insert=(2, 20), class_="framenum"))
 
     @property
     def ARROW(self):
@@ -72,22 +85,27 @@ class SvgFig(object):
     def tostring(self):
         return self.dwg.tostring()
 
-    def should_draw(self, box):
+    def should_draw(self, box, args):
         if self.frame_num is None:
-            return True
+            should_draw = True
+        else:
+            last_frame = box.set + box.fade
+            should_draw = (box.rise <= self.frame_num < last_frame)
+            if self.frame_num >= box.set:
+                args['opacity'] = 0.25
 
-        return box.rise <= self.frame_num < box.set
+        return should_draw
 
     def rect(self, **args):
         box = Box(args)
         text = poparg(args, text=None)
-        if self.should_draw(box):
+        if self.should_draw(box, args):
             r = self.dwg.rect(
                 insert=(box.left, box.top),
                 size=box.size,
                 **args
             )
-            self.dwg.add(r)
+            self.root.add(r)
 
             self.text_for_box(text, box)
         return box
@@ -95,13 +113,13 @@ class SvgFig(object):
     def circle(self, **args):
         box = Box(args)
         text = poparg(args, text=None)
-        if self.should_draw(box):
+        if self.should_draw(box, args):
             c = self.dwg.circle(
                 center=box.center,
                 r=box.size[0]/2,
                 **args
             )
-            self.dwg.add(c)
+            self.root.add(c)
 
             self.text_for_box(text, box)
         return box
@@ -112,14 +130,14 @@ class SvgFig(object):
         return self.rect(rx=rad, ry=rad, **args)
 
     def text_for_box(self, text, box, **args):
-        if text and self.should_draw(box):
+        if text and self.should_draw(box, args):
             t = self.dwg.text(text, insert=box.center, text_anchor="middle", dy=[".3em"], **args)
-            self.dwg.add(t)
+            self.root.add(t)
 
     def line(self, start, end, **extra):
         l = self.dwg.polyline([start, end], **extra)
         l['marker-end'] = self.ARROW.get_funciri()
-        self.dwg.add(l)
+        self.root.add(l)
 
     def connect(self, start, startdir, end, enddir, jump=None, start_marker=None, **args):
         # Bleh: hack to get should_draw info from args.
@@ -127,7 +145,7 @@ class SvgFig(object):
         args['size'] = (0,0)
         should_draw_box = Box(args)
 
-        if self.should_draw(should_draw_box):
+        if self.should_draw(should_draw_box, args):
             if jump is None:
                 jump = distance(start, end) / 4
             start_jump = offset(start, startdir, jump)
@@ -145,7 +163,7 @@ class SvgFig(object):
             p['marker-end'] = self.ARROW.get_funciri()
             if start_marker:
                 p['marker-start'] = start_marker.get_funciri()
-            self.dwg.add(p)
+            self.root.add(p)
 
     def highlight(self, box, **args):
         """Draw some kind of highlight around `box`."""
@@ -153,7 +171,7 @@ class SvgFig(object):
         args['size'] = box.size
         should_draw_box = Box(args)
 
-        if self.should_draw(should_draw_box):
+        if self.should_draw(should_draw_box, args):
             padding = 10
             highlight_size = (box.size[0] + padding, box.size[1] + padding)
             self.rect(center=box.center, size=highlight_size, rx=5, ry=5, class_="highlight")
@@ -243,6 +261,7 @@ class Box(object):
 
         self.rise = poparg(args, rise=0)
         self.set = poparg(args, set=999999)
+        self.fade = poparg(args, fade=0)
 
     def translate(self, dx, dy):
         self.cx += dx
@@ -282,9 +301,8 @@ class Box(object):
         return self.left, self.cy
 
 class PyFig(SvgFig):
-    def __init__(self, layout=None, **kwargs):
+    def __init__(self, **kwargs):
         super(PyFig, self).__init__(**kwargs)
-        self.layout = layout
 
     def name(self, **args):
         class_ = add_class("name", poparg(args, class_=None))
@@ -300,6 +318,7 @@ class PyFig(SvgFig):
         return self.pill(class_=class_, **args)
 
     def list(self, **args):
+        defarg(args, size=(40, 50))
         texts = poparg(args, texts=['x', 'y', 'z'])
         box = Box(args)
         class_ = poparg(args, class_=None)
@@ -312,7 +331,9 @@ class PyFig(SvgFig):
         return boxes
 
     def reference(self, name, val, **args):
-        if self.should_draw(name) and self.should_draw(val):
+        sd_args = {}
+        if self.should_draw(name, sd_args) and self.should_draw(val, sd_args):
+            args.update(sd_args)
             self.connect(name.east, 0, val.west, 0, class_="arrow", **args)
 
     def frame(self, **args):
@@ -321,9 +342,10 @@ class PyFig(SvgFig):
         rclass = add_class("frame", class_)
         box = self.rect(class_=rclass, rx=20, ry=20, **args)
         tclass = add_class("framelabel", class_)
-        if self.should_draw(box):
+        if self.should_draw(box, args):
             text_box = Box({'center':(box.cx, box.top+25), 'size':(box.w, 25)})
-            self.text_for_box(text, box=text_box, class_=tclass)
+            # PAIN: having to dig out the opacity from args.
+            self.text_for_box(text, box=text_box, class_=tclass, opacity=args.get('opacity', 1))
         return box
 
 
@@ -367,8 +389,11 @@ class PyLayout(object):
         self.y += 50
         return ('topright', topright)
 
+    def end_frame(self):
+        self.y += 25
+
 # DSL hackery:
-#   
+#
 #   >>> def u(*args, **kwargs):
 #   ...  for a in args:
 #   ...   kwargs.update(a)
