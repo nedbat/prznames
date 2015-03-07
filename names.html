@@ -360,6 +360,9 @@ svg .framenum {
     pyfig_defaults = dict(
         draw_grid=False,
         label_frames=False,
+        y=25,
+        name_right=200,
+        val_gap=75,
         name_shape="tag",
         )
 
@@ -424,7 +427,7 @@ svg .framenum {
         '''
 
     def figure(frame):
-        fig = make_pyfig(size=(500,400), frame_num=frame, y=25, name_right=200, val_gap=75, name_shape="tag")
+        fig = make_pyfig(size=(500,400), frame_num=frame)
 
         x = auto_name(fig, "x")
         c = fig.int(pos=fig.val_for_name(x), text="23")
@@ -461,7 +464,7 @@ svg .framenum {
         '''
 
     def figure(frame):
-        fig = make_pyfig(size=(500,400), frame_num=frame, y=25, name_right=200, val_gap=75)
+        fig = make_pyfig(size=(500,400), frame_num=frame)
 
         n_x = auto_name(fig, "x")
         i_23 = fig.int(pos=fig.val_for_name(n_x), text="23", set=2)
@@ -514,7 +517,7 @@ svg .framenum {
         '''
 
     def figure(frame):
-        fig = make_pyfig(size=(500,400), frame_num=frame, y=25, name_right=200, val_gap=75)
+        fig = make_pyfig(size=(500,400), frame_num=frame)
 
         n_x = auto_name(fig, "x", set=3)
         i_23 = fig.int(pos=fig.val_for_name(n_x), text="23", set=2)
@@ -586,7 +589,7 @@ svg .framenum {
         '''
 
     def figure(frame):
-        fig = make_pyfig(size=(500,400), frame_num=frame, y=25, name_right=200, val_gap=75)
+        fig = make_pyfig(size=(500,400), frame_num=frame)
 
         n_x = auto_name(fig, "x", set=2)
         n_hidden = auto_name(fig, "", set=0)
@@ -651,7 +654,7 @@ svg .framenum {
         '''
 
     def figure(frame):
-        fig = make_pyfig(size=(500,400), frame_num=frame, y=25, name_right=200, val_gap=75)
+        fig = make_pyfig(size=(500,400), frame_num=frame)
 
         n_nums = auto_name(fig, "nums")
         l_nums = fig.list(texts="123", pos=fig.val_for_name(n_nums))
@@ -704,7 +707,7 @@ svg .framenum {
         '''
 
     def figure(frame):
-        fig = make_pyfig(size=(500,400), frame_num=frame, y=25, name_right=200, val_gap=75)
+        fig = make_pyfig(size=(500,400), frame_num=frame)
 
         n_nums = auto_name(fig, "nums")
         l_nums = fig.list(texts="123", pos=fig.val_for_name(n_nums))
@@ -796,7 +799,7 @@ svg .framenum {
         '''
 
     def figure(frame):
-        fig = make_pyfig(size=(500,400), frame_num=frame, y=25, name_right=200, val_gap=75)
+        fig = make_pyfig(size=(500,400), frame_num=frame)
 
         n_x = auto_name(fig, "x", set=4)
         n_y = auto_name(fig, "y", rise=2)
@@ -877,7 +880,7 @@ svg .framenum {
         '''
 
     def figure(frame):
-        fig = make_pyfig(size=(500,400), frame_num=frame, y=25, name_right=200, val_gap=75)
+        fig = make_pyfig(size=(500,400), frame_num=frame)
 
         n_nums = auto_name(fig, "nums")
         l_nums = fig.list(texts="123", pos=fig.val_for_name(n_nums), set=2)
@@ -980,7 +983,7 @@ svg .framenum {
         '''
 
     def figure(frame):
-        fig = make_pyfig(size=(500,400), frame_num=frame, y=25, name_right=200, val_gap=75)
+        fig = make_pyfig(size=(500,400), frame_num=frame)
 
         n_num = auto_name(fig, "num")
         i_17 = fig.int(pos=fig.val_for_name(n_num), text="17")
@@ -1101,7 +1104,7 @@ svg .framenum {
         '''
 
     def figure(frame):
-        fig = make_pyfig(size=(500,400), frame_num=frame, y=25, name_right=200, val_gap=75)
+        fig = make_pyfig(size=(500,400), frame_num=frame)
 
         n_nums = auto_name(fig, "nums")
         l_nums = fig.list(texts=["1", "2", "3"], pos=fig.val_for_name(n_nums))
@@ -1273,7 +1276,7 @@ svg .framenum {
         '''
 
     def figure(frame):
-        fig = make_pyfig(size=(550,400), frame_num=frame, y=25, name_right=230, val_gap=75)
+        fig = make_pyfig(size=(550,400), frame_num=frame, name_right=230)
 
         n_nums = auto_name(fig, "nums")
         l_nums = fig.list(texts=["1", "2", "3"], pos=fig.val_for_name(n_nums))
@@ -1436,7 +1439,7 @@ svg .framenum {
         '''
 
     def figure(frame):
-        fig = make_pyfig(size=(550,400), frame_num=frame, y=25, name_right=230, val_gap=75)
+        fig = make_pyfig(size=(550,400), frame_num=frame, name_right=230)
 
         n_nums = auto_name(fig, "nums")
         l_nums = fig.list(texts=["1", "2", "3"], pos=fig.val_for_name(n_nums), set=8, fade=1)
@@ -1616,7 +1619,7 @@ svg .framenum {
         '''
 
     def figure(frame):
-        fig = make_pyfig(size=(500,400), frame_num=frame, y=25, name_right=200, val_gap=75)
+        fig = make_pyfig(size=(500,400), frame_num=frame)
 
         x0 = auto_name(fig, "", set=0)
         x = auto_name(fig, "x")
@@ -1701,7 +1704,7 @@ svg .framenum {
     <div class="opaque" style="text-align:center">
         <!--[[[cog
             # Random figure!
-            fig = make_pyfig(size=(400,600), scale=0.55, y=25, name_right=200, val_gap=175)
+            fig = make_pyfig(size=(400,600), scale=0.55, val_gap=175)
 
             r = random.Random(14)   # seeded to make it pretty good.
 
