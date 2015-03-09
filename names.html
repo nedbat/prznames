@@ -486,12 +486,10 @@ svg text.framelabel {
         fig = make_pyfig(size=(500,400), frame_num=frame)
 
         n_x = auto_name(fig, "x")
-        i_23 = fig.int(pos=fig.val_for_name(n_x), text="23", set=2)
+        i_23 = fig.int(pos=fig.val_for_name(n_x), text="23")
         fig.reference(n_x, i_23)
         n_y = auto_name(fig, "y", rise=2)
         c_23 = (n_x.cy + n_y.cy) / 2
-        i_23 = fig.int(left=(fig.val_left, c_23), text="23", rise=2)
-        fig.reference(n_x, i_23)
         fig.reference(n_y, i_23)
         cog.outl(fig.tostring())
 
@@ -520,7 +518,7 @@ svg text.framelabel {
         y = x
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
-    <svg baseProfile="full" height="400" version="1.1" width="500" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id3" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="138,25 193.75,25 200,50 193.75,75 138,75" /><text dy=".3em" text-anchor="middle" x="165.875" y="50">x</text><polygon class="name" points="138,100 193.75,100 200,125 193.75,150 138,150" /><text dy=".3em" text-anchor="middle" x="165.875" y="125">y</text><circle class="int value" cx="300" cy="87.5" r="25" /><text dy=".3em" text-anchor="middle" x="300" y="87.5">23</text><path class="arrow" d="M 200,50 C 220,50 223,53 237,68 C 251,84 254,87 275,87" fill="none" marker-end="url(#id3)" /><path class="arrow" d="M 200,125 C 220,125 223,121 237,106 C 251,90 254,87 275,87" fill="none" marker-end="url(#id3)" /></svg>
+    <svg baseProfile="full" height="400" version="1.1" width="500" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id3" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="138,25 193.75,25 200,50 193.75,75 138,75" /><text dy=".3em" text-anchor="middle" x="165.875" y="50">x</text><circle class="int value" cx="300" cy="50" r="25" /><text dy=".3em" text-anchor="middle" x="300" y="50">23</text><path class="arrow" d="M 200,50 C 218,50 218,50 237,50 C 256,50 256,50 275,50" fill="none" marker-end="url(#id3)" /><polygon class="name" points="138,100 193.75,100 200,125 193.75,150 138,150" /><text dy=".3em" text-anchor="middle" x="165.875" y="125">y</text><path class="arrow" d="M 200,125 C 226,125 230,112 237,87 C 244,62 248,50 275,50" fill="none" marker-end="url(#id3)" /></svg>
     </div>
     </div>
     </div>
@@ -541,12 +539,10 @@ svg text.framelabel {
         fig = make_pyfig(size=(500,400), frame_num=frame)
 
         n_x = auto_name(fig, "x", set=3)
-        i_23 = fig.int(pos=fig.val_for_name(n_x), text="23", set=2)
-        fig.reference(n_x, i_23)
         fig.next_name()  # Burn a name to space them out.
         n_y = auto_name(fig, "y", rise=2)
         c_23 = (n_x.cy + n_y.cy) / 2
-        i_23 = fig.int(left=(fig.val_left, c_23), text="23", rise=2)
+        i_23 = fig.int(left=(fig.val_left, c_23), text="23")
         fig.reference(n_x, i_23)
         fig.reference(n_y, i_23)
 
@@ -574,7 +570,7 @@ svg text.framelabel {
         x = 12
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
-    <svg baseProfile="full" height="400" version="1.1" width="500" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id4" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="138,25 193.75,25 200,50 193.75,75 138,75" /><text dy=".3em" text-anchor="middle" x="165.875" y="50">x</text><circle class="int value" cx="300" cy="50" r="25" /><text dy=".3em" text-anchor="middle" x="300" y="50">23</text><path class="arrow" d="M 200,50 C 218,50 218,50 237,50 C 256,50 256,50 275,50" fill="none" marker-end="url(#id4)" /><polygon class="name" points="138,25 193.75,25 200,50 193.75,75 138,75" /><text dy=".3em" text-anchor="middle" x="165.875" y="50">x</text></svg>
+    <svg baseProfile="full" height="400" version="1.1" width="500" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id4" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="138,25 193.75,25 200,50 193.75,75 138,75" /><text dy=".3em" text-anchor="middle" x="165.875" y="50">x</text><circle class="int value" cx="300" cy="125" r="25" /><text dy=".3em" text-anchor="middle" x="300" y="125">23</text><path class="arrow" d="M 200,50 C 226,50 230,62 237,87 C 244,112 248,125 275,125" fill="none" marker-end="url(#id4)" /><polygon class="name" points="138,25 193.75,25 200,50 193.75,75 138,75" /><text dy=".3em" text-anchor="middle" x="165.875" y="50">x</text></svg>
     </div>
     </div>
     <div class="overlay incremental">
@@ -912,6 +908,24 @@ svg text.framelabel {
     nums = nums + [7]
     </pre>
     <p>Can't mutate an int: ints are immutable</p>
+</div>
+
+<div class="slide">
+    <h1>Assignment variants</h1>
+    <p>Augmented assignment</p>
+    <pre class="python">
+    x += y
+        # is kind of like...
+    x = x + y
+        # but really is:
+    x = x.__iadd__(y)
+    </pre>
+    <p>Slice assignment</p>
+    <pre class="python">
+    nums[:] = [1, 2, 3]
+        # is kind of like...
+    nums.replace_everything_with([1, 2, 3])
+    </pre>
 </div>
 
 <div class="slide">
