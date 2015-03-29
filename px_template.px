@@ -1,25 +1,17 @@
-<page title="Loop Like A Native">
+<page title="Python Names and Values">
 <history>
-<what when="20120424T144700">Created</what>
-<what when="20130316T170500">Updated to PyCon 2013</what>
-<what when="20130319T180800">Added video</what>
+<what when="20150329T182200">Created</what>
 </history>
 
+<p>This is a presentation I gave at PyCon 2015.  You can read the slides and text on
+this page, or open the <a href="text/names/names.html">actual presentation</a> in
+your browser (use right and left arrows to advance the slides).<!--, or watch the video:--></p>
+
 <!--
-<p>This is a presentation I gave at <a href='http://bostonpython.com'>Boston Python</a> in April of 2012.</p>
-
-<p>There's a <a href='http://www.ustream.tv/recorded/22100783'>video of me talking</a>, but you can't read the slides
-in it, so you might want to follow along here.
-Also, clicking the slide images on this page will jump into the full presentation at that point.</p>
--->
-
-<p>This is a presentation I gave at PyCon 2013.  You can read the slides and text on
-this page, or open the <a href="text/iter/iter.html">actual presentation</a> in
-your browser (use right and left arrows to advance the slides), or watch the video:</p>
-
 <p align="center">
 <iframe width="500" height="369" src="http://www.youtube.com/embed/EnSu9hHGq5o" frameborder="0" allowfullscreen="allowfullscreen"/>
 </p>
+-->
 
 <content/>
 

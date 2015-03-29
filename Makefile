@@ -1,3 +1,5 @@
+SLUG = names1
+
 SLIDE_HTML = names.html
 
 SUPPORT = lineselect.js
@@ -16,18 +18,21 @@ clean:
 pngs:
 	phantomjs phantom-slippy-to-png.js $(SLIDE_HTML) $(PNG_DIR)/
 
-PX = names.px
+PX = $(SLUG).px
 
 px $(PX): $(SLIDE_HTML)
-	python slippy_to_px.py $(SLIDE_HTML) $(PX)
+	python slippy_to_px.py $(SLIDE_HTML) $(PX) $(SLUG)
 
 WEBHOME = ~/web/stellated/pages/text
-WEBPREZHOME = $(WEBHOME)/names
+WEBPREZHOME = $(WEBHOME)/$(SLUG)
+WEBPIXHOME = $(WEBHOME)/$(SLUG)_pix
 
 publish: $(PX) pngs
+	mkdir -p $(WEBPREZHOME) $(WEBPIXHOME)
 	cp -f $(PX) $(WEBHOME)
-	cp -f $(PNG_DIR)/* $(WEBHOME)
-	cp -f $(SLIDE_HTML) $(SUPPORT) $(WEBPREZHOME)
-	cp -f *.png $(WEBPREZHOME)
+	cp -f $(PNG_DIR)/* $(WEBPIXHOME)
+	cp -f $(SLIDE_HTML) $(WEBPREZHOME)/$(SLUG).html
+	cp -f $(SUPPORT) $(WEBPREZHOME)
+	cp -f *.jpg $(WEBPREZHOME)
 	cp -rf slippy $(WEBPREZHOME)
 	cp -rf highlight $(WEBPREZHOME)
