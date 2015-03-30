@@ -446,8 +446,15 @@ svg text.framelabel {
 <div class="slide title" data-layout="clean">
     <h1>Facts and Myths about Names and Values</h1>
     <h2>Ned Batchelder<br/>@nedbat</h2>
-    <h2>http://bit.ly/pynames</h2>
+    <h2>http://bit.ly/pynames1</h2>
 </div>
+
+<div class="text"><!-- {{{ -->
+    <p>This talk is about some fundamental concepts in Python: names and
+    values.</p>
+
+</div><!-- }}} -->
+
 
 <div class="slide">
     <h1>Python is simple</h1>
@@ -456,13 +463,27 @@ svg text.framelabel {
     <li class="incremental">... until it doesn't</li>
     <li class="incremental">Mechanisms are simple</li>
     <li class="incremental">... but the effects can be surprising</li>
-    <li class="incremental">Names, values, assignment, etc</li>
+    <li class="incremental">Names, values, assignment, mutability</li>
     </ul>
 </div>
 
+<div class="text"><!-- {{{ -->
+    <p>Python is a very approachable language.  Often it works just as you 
+    expect if you come to it from other languages.  But you might suddenly
+    encounter surprising behavior.</p>
+
+    <p>The underlying mechanisms of Python are often quite simple, but their
+    combined effects might not be what you expect.  By understanding the
+    mechanisms, you can reason about their effects.</p>
+
+    <p>Today I'll be talking about names, values, assignment, and mutability.</p> 
+
+</div><!-- }}} -->
+
+
 <div class="slide">
     <h1>Names refer to values</h1>
-    <p>Assignment means: make this name refer to that value</p>
+    <p>Assignment: make this name refer to that value</p>
     <!--[[[cog
     code = '''\
         x = 23
@@ -498,6 +519,34 @@ svg text.framelabel {
     <!-- }}} -->
     <!--[[[end]]]-->
 </div>
+
+<div class="text"><!-- {{{ -->
+<p>As in many programming languages, a Python assignment statement associates a
+    symbolic name on the left-hand side with a value on the right-hand side.
+    In Python, we say that names refer to values, or a name is a reference to a
+    value:</p>
+
+<code lang="py">
+x = 23
+</code>
+
+<p>Now the name "x" refers to the value 23.  The next time we use the name x,
+    we'll get the value 23:</p> 
+
+<code lang='python'>
+print(x+2)       # prints 25
+</code>
+
+<p>Exactly how the name refers to the value isn't really important.  If you're
+    experienced with the C language, you might like to think of it as a
+    pointer, but if that means nothing to you then don't worry about it.</p>
+
+<p>To help explain what's going on, I'll use diagrams.  A gray rectangular tag-like shape is a
+    name, with an arrow pointing to its value. The slide shows the name x referring to an
+    integer 23.</p>
+
+</div><!-- }}} -->
+
 
 <div class="slide">
     <h1>Many names can refer to one value</h1>
@@ -550,6 +599,24 @@ svg text.framelabel {
     <!-- }}} -->
     <!--[[[end]]]-->
 </div>
+
+<div class="text"><!-- {{{ -->
+<p>There's no rule that says a value can only have one name.  An assignment
+    statement can make a second (or third, ...) name refer to the same
+    value.</p>
+
+<code lang="py">
+x = 23
+y = x
+</code>
+
+<p>Now x and y both refer to the same value</p>
+
+<p>Neither x or y is the "real" name.  They have equal status: each refers to
+    the value in exactly the same way.</p>
+
+</div><!-- }}} -->
+
 
 <div class="slide">
     <h1>Names are reassigned independently</h1>
@@ -623,6 +690,23 @@ svg text.framelabel {
     <!--[[[end]]]-->
 </div>
 
+<div class="text"><!-- {{{ -->
+<p>If two names refer to the same value, this doesn't magically link the
+    two names.  Reassigning one of them won't reassign the other also:</p>
+
+<code lang="py">
+x = 23
+y = x
+x = 12
+</code>
+
+<p>When we said "y = x", that doesn't mean that they will always be the
+    same forever.  Reassigning x leaves y alone.  Imagine the chaos if
+    it didn't!</p>
+
+</div><!-- }}} -->
+
+
 <div class="slide">
     <h1>Values live until no references</h1>
     <!--[[[cog
@@ -686,6 +770,19 @@ svg text.framelabel {
     <!--[[[end]]]-->
 </div>
 
+<div class="text"><!-- {{{ -->
+<p>Python keeps track of how many references each value has, and automatically
+    cleans up values that have none.  This is called "garbage collection,"
+    and means that you don't have to get rid of values, they go away by
+    themselves when they are no longer needed.</p>
+
+<p>Exactly how Python keeps track is an implementation detail, but if you hear
+    the term "reference counting," that's an important part of it.  Sometimes
+    cleaning up a value is called reclaiming it.</p>
+
+</div><!-- }}} -->
+
+
 <div class="slide">
     <h1>Assignment never copies data</h1>
     <!--[[[cog
@@ -738,6 +835,49 @@ svg text.framelabel {
     <!-- }}} -->
     <!--[[[end]]]-->
 </div>
+
+<div class="text"><!-- {{{ -->
+
+<p>An important fact about assignment: assignment never copies data.</p>
+
+<p>When values have more than one name, it's easy to get confused and think of
+    it as two names and two values:</p>
+
+<code lang="py">
+x = 23
+y = x
+# "Now I have two values: x and y!"
+# NO: you have two names, but only one value.
+</code>
+
+<p>Assigning a value to a name never copies the data, it never makes a new
+    value.  Assignment just makes the name on the left refer to the value on
+    the right.  In this case, we have only one 23, and x and y both refer to
+    it, just as we saw in the last diagrams.</p>
+
+<p>Things get more interesting when we have more complicated values, like a
+    list:</p>
+
+<code lang="py">
+nums = [1, 2, 3]
+</code>
+
+<p>Now if we assign nums to another name, we'll have two names referring to the
+    same list:</p>
+
+<code lang="py">
+nums = [1, 2, 3]
+other = nums
+</code>
+
+<p>Remember: assignment never makes new values, and it never copies data.  This
+    assignment statement doesn't magically turn my list into two lists.</p>
+
+<p>At this point, we have one list, referred to by two names, which can lead
+    to a big surprise.</p>
+
+</div><!-- }}} -->
+
 
 <div class="slide">
     <h1>Changes are visible through all names</h1>
@@ -822,6 +962,13 @@ svg text.framelabel {
     <!-- }}} -->
     <!--[[[end]]]-->
 </div>
+
+<div class="text"><!-- {{{ -->
+
+    <p></p>
+
+</div><!-- }}} -->
+
 
 <div class="slide">
     <h1>Mutable aliasing!</h1>
@@ -1945,14 +2092,14 @@ svg text.framelabel {
         <p style="font-size: 60%"><i>Thanks, Craig Swanson&nbsp;&nbsp; http://perspicuity.com</i></p>
     </div>
     <h2 style="margin-top: 5em">@nedbat</h2>
-    <h2>http://bit.ly/pynames</h2>
+    <h2>http://bit.ly/pynames1</h2>
 </div>
 
 <!-- ** Attic {{{ -->
 <div class="layout" data-name="default">
     <content></content>
     <div class="footer">
-        <span class="left">bit.ly<span class='punct'>/</span>pynames</span>
+        <span class="left">bit.ly<span class='punct'>/</span>pynames1</span>
         <span class="right"><span class='punct'>@</span>nedbat</span>
         <hr class="defloat" />
     </div>
