@@ -189,14 +189,14 @@ Process this file with cog:
         }
 
         pre .selected {
-            xbackground: #88f;
-        }
-
-        pre.python .selected {
             background: #fff;
-            border: .15em solid #f88;
+            border: .15em solid #f66;
             padding: .15em .15em .05em .15em;
             margin: -.3em -.3em -.2em -.3em;
+        }
+
+        html.phantompng pre .selected {
+            display: none;
         }
 
         .slide li {
@@ -442,6 +442,10 @@ svg text.framelabel {
 <style>
 svg text.framelabel {
     font-family: inherit !important;
+}
+
+html.phantompng svg .highlight {
+    display: none;
 }
 </style>
 

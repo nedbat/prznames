@@ -75,6 +75,9 @@ function renderer(page, url, currentSlide, slides) {
     function initPage() {
         var i;
         page.evaluate(function () {
+            // Indicate that we are making PNGs
+            $('html').addClass('phantompng');
+            // Disable incremental display
             $('.incremental').css('opacity', '1').removeClass('incremental');
         });
         // move to the current slide
