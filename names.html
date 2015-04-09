@@ -486,8 +486,11 @@ text and figures.</p>
 </div>
 
 <div class="text"><!-- {{{ -->
-    <p>This talk is about some fundamental concepts in Python: names and
-    values.</p>
+
+<p>This talk is about some fundamental concepts in Python: names and
+values.</p>
+
+<p>These lessons apply to both Python 2 and Python 3.</p>
 
 </div><!-- }}} -->
 
@@ -926,7 +929,7 @@ other = nums
         nums = [1, 2, 3]
         other = nums
         nums.append(4)
-        print other     # [1, 2, 3, 4] !!!
+        print(other)        # [1, 2, 3, 4] !!!
         '''
 
     def figure(frame):
@@ -956,7 +959,7 @@ other = nums
         nums = [1, 2, 3]
         other = nums
         nums.append(4)
-        print other     # [1, 2, 3, 4] !!!
+        print(other)        # [1, 2, 3, 4] !!!
         </pre>
     </div>
     <div class="overlay incremental">
@@ -964,7 +967,7 @@ other = nums
         nums = [1, 2, 3]
         other = nums
         nums.append(4)
-        print other     # [1, 2, 3, 4] !!!
+        print(other)        # [1, 2, 3, 4] !!!
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
     <svg baseProfile="full" height="400" version="1.1" width="500" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id12" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="102,25 193.75,25 200,50 193.75,75 102,75" /><text dy=".3em" text-anchor="middle" x="147.875" y="50">nums</text><rect class="list" height="50" width="40" x="275" y="25" /><text dy=".3em" text-anchor="middle" x="295" y="50">1</text><rect class="list" height="50" width="40" x="315" y="25" /><text dy=".3em" text-anchor="middle" x="335" y="50">2</text><rect class="list" height="50" width="40" x="355" y="25" /><text dy=".3em" text-anchor="middle" x="375" y="50">3</text><path class="arrow" d="M 200,50 C 218,50 218,50 237,50 C 256,50 256,50 275,50" fill="none" marker-end="url(#id12)" /></svg>
@@ -975,7 +978,7 @@ other = nums
         nums = [1, 2, 3]
         other = nums
         nums.append(4)
-        print other     # [1, 2, 3, 4] !!!
+        print(other)        # [1, 2, 3, 4] !!!
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
     <svg baseProfile="full" height="400" version="1.1" width="500" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id13" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="102,25 193.75,25 200,50 193.75,75 102,75" /><text dy=".3em" text-anchor="middle" x="147.875" y="50">nums</text><rect class="list" height="50" width="40" x="275" y="25" /><text dy=".3em" text-anchor="middle" x="295" y="50">1</text><rect class="list" height="50" width="40" x="315" y="25" /><text dy=".3em" text-anchor="middle" x="335" y="50">2</text><rect class="list" height="50" width="40" x="355" y="25" /><text dy=".3em" text-anchor="middle" x="375" y="50">3</text><path class="arrow" d="M 200,50 C 218,50 218,50 237,50 C 256,50 256,50 275,50" fill="none" marker-end="url(#id13)" /><polygon class="name" points="90,100 193.75,100 200,125 193.75,150 90,150" /><text dy=".3em" text-anchor="middle" x="141.875" y="125">other</text><path class="arrow" d="M 200,125 C 226,125 230,112 237,87 C 244,62 248,50 275,50" fill="none" marker-end="url(#id13)" /></svg>
@@ -986,7 +989,7 @@ other = nums
         nums = [1, 2, 3]
         other = nums
         nums.append(4)
-        print other     # [1, 2, 3, 4] !!!
+        print(other)        # [1, 2, 3, 4] !!!
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
     <svg baseProfile="full" height="400" version="1.1" width="500" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id14" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="102,25 193.75,25 200,50 193.75,75 102,75" /><text dy=".3em" text-anchor="middle" x="147.875" y="50">nums</text><rect class="list" height="50" width="40" x="275" y="25" /><text dy=".3em" text-anchor="middle" x="295" y="50">1</text><rect class="list" height="50" width="40" x="315" y="25" /><text dy=".3em" text-anchor="middle" x="335" y="50">2</text><rect class="list" height="50" width="40" x="355" y="25" /><text dy=".3em" text-anchor="middle" x="375" y="50">3</text><path class="arrow" d="M 200,50 C 218,50 218,50 237,50 C 256,50 256,50 275,50" fill="none" marker-end="url(#id14)" /><polygon class="name" points="90,100 193.75,100 200,125 193.75,150 90,150" /><text dy=".3em" text-anchor="middle" x="141.875" y="125">other</text><path class="arrow" d="M 200,125 C 226,125 230,112 237,87 C 244,62 248,50 275,50" fill="none" marker-end="url(#id14)" /><rect class="highlight" height="60" rx="5" ry="5" width="108" x="97" y="20" /></svg>
@@ -997,7 +1000,7 @@ other = nums
         nums = [1, 2, 3]
         other = nums
         nums.append(4)
-        print other     # [1, 2, 3, 4] !!!
+        print(other)        # [1, 2, 3, 4] !!!
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
     <svg baseProfile="full" height="400" version="1.1" width="500" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id15" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="102,25 193.75,25 200,50 193.75,75 102,75" /><text dy=".3em" text-anchor="middle" x="147.875" y="50">nums</text><rect class="list" height="50" width="40" x="275" y="25" /><text dy=".3em" text-anchor="middle" x="295" y="50">1</text><rect class="list" height="50" width="40" x="315" y="25" /><text dy=".3em" text-anchor="middle" x="335" y="50">2</text><rect class="list" height="50" width="40" x="355" y="25" /><text dy=".3em" text-anchor="middle" x="375" y="50">3</text><path class="arrow" d="M 200,50 C 218,50 218,50 237,50 C 256,50 256,50 275,50" fill="none" marker-end="url(#id15)" /><polygon class="name" points="90,100 193.75,100 200,125 193.75,150 90,150" /><text dy=".3em" text-anchor="middle" x="141.875" y="125">other</text><path class="arrow" d="M 200,125 C 226,125 230,112 237,87 C 244,62 248,50 275,50" fill="none" marker-end="url(#id15)" /><rect class="list" height="50" width="40" x="275" y="25" /><text dy=".3em" text-anchor="middle" x="295" y="50">1</text><rect class="list" height="50" width="40" x="315" y="25" /><text dy=".3em" text-anchor="middle" x="335" y="50">2</text><rect class="list" height="50" width="40" x="355" y="25" /><text dy=".3em" text-anchor="middle" x="375" y="50">3</text><rect class="list" height="50" width="40" x="395" y="25" /><text dy=".3em" text-anchor="middle" x="415" y="50">4</text><rect class="highlight" height="60" rx="5" ry="5" width="108" x="97" y="20" /><rect class="highlight" height="60" rx="5" ry="5" width="50" x="390" y="20" /></svg>
@@ -1008,7 +1011,7 @@ other = nums
         nums = [1, 2, 3]
         other = nums
         nums.append(4)
-        print other     # [1, 2, 3, 4] !!!
+        print(other)        # [1, 2, 3, 4] !!!
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
     <svg baseProfile="full" height="400" version="1.1" width="500" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id16" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="102,25 193.75,25 200,50 193.75,75 102,75" /><text dy=".3em" text-anchor="middle" x="147.875" y="50">nums</text><rect class="list" height="50" width="40" x="275" y="25" /><text dy=".3em" text-anchor="middle" x="295" y="50">1</text><rect class="list" height="50" width="40" x="315" y="25" /><text dy=".3em" text-anchor="middle" x="335" y="50">2</text><rect class="list" height="50" width="40" x="355" y="25" /><text dy=".3em" text-anchor="middle" x="375" y="50">3</text><path class="arrow" d="M 200,50 C 218,50 218,50 237,50 C 256,50 256,50 275,50" fill="none" marker-end="url(#id16)" /><polygon class="name" points="90,100 193.75,100 200,125 193.75,150 90,150" /><text dy=".3em" text-anchor="middle" x="141.875" y="125">other</text><path class="arrow" d="M 200,125 C 226,125 230,112 237,87 C 244,62 248,50 275,50" fill="none" marker-end="url(#id16)" /><rect class="list" height="50" width="40" x="275" y="25" /><text dy=".3em" text-anchor="middle" x="295" y="50">1</text><rect class="list" height="50" width="40" x="315" y="25" /><text dy=".3em" text-anchor="middle" x="335" y="50">2</text><rect class="list" height="50" width="40" x="355" y="25" /><text dy=".3em" text-anchor="middle" x="375" y="50">3</text><rect class="list" height="50" width="40" x="395" y="25" /><text dy=".3em" text-anchor="middle" x="415" y="50">4</text><rect class="highlight" height="60" rx="5" ry="5" width="120" x="85" y="95" /></svg>
@@ -1019,7 +1022,7 @@ other = nums
         nums = [1, 2, 3]
         other = nums
         nums.append(4)
-        print other     # [1, 2, 3, 4] !!!
+        print(other)        # [1, 2, 3, 4] !!!
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
     <svg baseProfile="full" height="400" version="1.1" width="500" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id17" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="102,25 193.75,25 200,50 193.75,75 102,75" /><text dy=".3em" text-anchor="middle" x="147.875" y="50">nums</text><rect class="list" height="50" width="40" x="275" y="25" /><text dy=".3em" text-anchor="middle" x="295" y="50">1</text><rect class="list" height="50" width="40" x="315" y="25" /><text dy=".3em" text-anchor="middle" x="335" y="50">2</text><rect class="list" height="50" width="40" x="355" y="25" /><text dy=".3em" text-anchor="middle" x="375" y="50">3</text><path class="arrow" d="M 200,50 C 218,50 218,50 237,50 C 256,50 256,50 275,50" fill="none" marker-end="url(#id17)" /><polygon class="name" points="90,100 193.75,100 200,125 193.75,150 90,150" /><text dy=".3em" text-anchor="middle" x="141.875" y="125">other</text><path class="arrow" d="M 200,125 C 226,125 230,112 237,87 C 244,62 248,50 275,50" fill="none" marker-end="url(#id17)" /><rect class="list" height="50" width="40" x="275" y="25" /><text dy=".3em" text-anchor="middle" x="295" y="50">1</text><rect class="list" height="50" width="40" x="315" y="25" /><text dy=".3em" text-anchor="middle" x="335" y="50">2</text><rect class="list" height="50" width="40" x="355" y="25" /><text dy=".3em" text-anchor="middle" x="375" y="50">3</text><rect class="list" height="50" width="40" x="395" y="25" /><text dy=".3em" text-anchor="middle" x="415" y="50">4</text><rect class="highlight" height="60" rx="5" ry="5" width="120" x="85" y="95" /><rect class="highlight" height="60" rx="5" ry="5" width="170" x="270" y="20" /></svg>
@@ -1624,7 +1627,7 @@ work apply to this assignment.</p>
         nums = [1, 2, 3]
         for x in nums:          # x = nums[0] ...
             x = x * 10
-        print nums              # [1, 2, 3]   :(
+        print(nums)             # [1, 2, 3]   :(
         '''
 
     def figure(frame):
@@ -1665,7 +1668,7 @@ work apply to this assignment.</p>
         nums = [1, 2, 3]
         for x in nums:          # x = nums[0] ...
             x = x * 10
-        print nums              # [1, 2, 3]   :(
+        print(nums)             # [1, 2, 3]   :(
         </pre>
     </div>
     <div class="overlay incremental">
@@ -1673,7 +1676,7 @@ work apply to this assignment.</p>
         nums = [1, 2, 3]
         for x in nums:          # x = nums[0] ...
             x = x * 10
-        print nums              # [1, 2, 3]   :(
+        print(nums)             # [1, 2, 3]   :(
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
     <svg baseProfile="full" height="325" version="1.1" width="500" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id31" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker><marker id="id32" markerHeight="4" markerWidth="4" orient="auto" refX="2" refY="2" viewBox="0,0,4,4"><circle cx="2" cy="2" fill="black" r="2" stroke="none" /></marker></defs><polygon class="name" points="102,25 193.75,25 200,50 193.75,75 102,75" /><text dy=".3em" text-anchor="middle" x="147.875" y="50">nums</text><rect class="list" height="50" width="40" x="275" y="25" /><rect class="list" height="50" width="40" x="315" y="25" /><rect class="list" height="50" width="40" x="355" y="25" /><path class="arrow" d="M 200,50 C 218,50 218,50 237,50 C 256,50 256,50 275,50" fill="none" marker-end="url(#id31)" /><circle class="int value" cx="300" cy="125" r="25" /><text dy=".3em" text-anchor="middle" x="300" y="125">1</text><circle class="int value" cx="360" cy="125" r="25" /><text dy=".3em" text-anchor="middle" x="360" y="125">2</text><circle class="int value" cx="420" cy="125" r="25" /><text dy=".3em" text-anchor="middle" x="420" y="125">3</text><path class="arrow" d="M 295,50 C 295,62 295,62 297,75 C 299,87 300,87 300,100" fill="none" marker-end="url(#id31)" marker-start="url(#id32)" /><path class="arrow" d="M 335,50 C 335,63 337,65 347,75 C 357,84 360,86 360,100" fill="none" marker-end="url(#id31)" marker-start="url(#id32)" /><path class="arrow" d="M 375,50 C 375,66 381,69 397,75 C 413,80 420,83 420,100" fill="none" marker-end="url(#id31)" marker-start="url(#id32)" /></svg>
@@ -1684,7 +1687,7 @@ work apply to this assignment.</p>
         nums = [1, 2, 3]
         for x in nums:          # x = nums[0] ...
             x = x * 10
-        print nums              # [1, 2, 3]   :(
+        print(nums)             # [1, 2, 3]   :(
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
     <svg baseProfile="full" height="325" version="1.1" width="500" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id33" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker><marker id="id34" markerHeight="4" markerWidth="4" orient="auto" refX="2" refY="2" viewBox="0,0,4,4"><circle cx="2" cy="2" fill="black" r="2" stroke="none" /></marker></defs><polygon class="name" points="102,25 193.75,25 200,50 193.75,75 102,75" /><text dy=".3em" text-anchor="middle" x="147.875" y="50">nums</text><rect class="list" height="50" width="40" x="275" y="25" /><rect class="list" height="50" width="40" x="315" y="25" /><rect class="list" height="50" width="40" x="355" y="25" /><path class="arrow" d="M 200,50 C 218,50 218,50 237,50 C 256,50 256,50 275,50" fill="none" marker-end="url(#id33)" /><circle class="int value" cx="300" cy="125" r="25" /><text dy=".3em" text-anchor="middle" x="300" y="125">1</text><circle class="int value" cx="360" cy="125" r="25" /><text dy=".3em" text-anchor="middle" x="360" y="125">2</text><circle class="int value" cx="420" cy="125" r="25" /><text dy=".3em" text-anchor="middle" x="420" y="125">3</text><path class="arrow" d="M 295,50 C 295,62 295,62 297,75 C 299,87 300,87 300,100" fill="none" marker-end="url(#id33)" marker-start="url(#id34)" /><path class="arrow" d="M 335,50 C 335,63 337,65 347,75 C 357,84 360,86 360,100" fill="none" marker-end="url(#id33)" marker-start="url(#id34)" /><path class="arrow" d="M 375,50 C 375,66 381,69 397,75 C 413,80 420,83 420,100" fill="none" marker-end="url(#id33)" marker-start="url(#id34)" /><polygon class="name" points="138,175 193.75,175 200,200 193.75,225 138,225" /><text dy=".3em" text-anchor="middle" x="165.875" y="200">x</text><path class="arrow" d="M 200,200 C 227,200 237,197 263,188 C 290,180 300,177 300,150" fill="none" marker-end="url(#id33)" /></svg>
@@ -1695,7 +1698,7 @@ work apply to this assignment.</p>
         nums = [1, 2, 3]
         for x in nums:          # x = nums[0] ...
             x = x * 10
-        print nums              # [1, 2, 3]   :(
+        print(nums)             # [1, 2, 3]   :(
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
     <svg baseProfile="full" height="325" version="1.1" width="500" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id35" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker><marker id="id36" markerHeight="4" markerWidth="4" orient="auto" refX="2" refY="2" viewBox="0,0,4,4"><circle cx="2" cy="2" fill="black" r="2" stroke="none" /></marker></defs><polygon class="name" points="102,25 193.75,25 200,50 193.75,75 102,75" /><text dy=".3em" text-anchor="middle" x="147.875" y="50">nums</text><rect class="list" height="50" width="40" x="275" y="25" /><rect class="list" height="50" width="40" x="315" y="25" /><rect class="list" height="50" width="40" x="355" y="25" /><path class="arrow" d="M 200,50 C 218,50 218,50 237,50 C 256,50 256,50 275,50" fill="none" marker-end="url(#id35)" /><circle class="int value" cx="300" cy="125" r="25" /><text dy=".3em" text-anchor="middle" x="300" y="125">1</text><circle class="int value" cx="360" cy="125" r="25" /><text dy=".3em" text-anchor="middle" x="360" y="125">2</text><circle class="int value" cx="420" cy="125" r="25" /><text dy=".3em" text-anchor="middle" x="420" y="125">3</text><path class="arrow" d="M 295,50 C 295,62 295,62 297,75 C 299,87 300,87 300,100" fill="none" marker-end="url(#id35)" marker-start="url(#id36)" /><path class="arrow" d="M 335,50 C 335,63 337,65 347,75 C 357,84 360,86 360,100" fill="none" marker-end="url(#id35)" marker-start="url(#id36)" /><path class="arrow" d="M 375,50 C 375,66 381,69 397,75 C 413,80 420,83 420,100" fill="none" marker-end="url(#id35)" marker-start="url(#id36)" /><polygon class="name" points="138,175 193.75,175 200,200 193.75,225 138,225" /><text dy=".3em" text-anchor="middle" x="165.875" y="200">x</text><path class="arrow" d="M 200,200 C 227,200 237,197 263,188 C 290,180 300,177 300,150" fill="none" marker-end="url(#id35)" /><circle class="int value" cx="300" cy="275" r="25" /><text dy=".3em" text-anchor="middle" x="300" y="275">10</text></svg>
@@ -1706,7 +1709,7 @@ work apply to this assignment.</p>
         nums = [1, 2, 3]
         for x in nums:          # x = nums[0] ...
             x = x * 10
-        print nums              # [1, 2, 3]   :(
+        print(nums)             # [1, 2, 3]   :(
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
     <svg baseProfile="full" height="325" version="1.1" width="500" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id37" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker><marker id="id38" markerHeight="4" markerWidth="4" orient="auto" refX="2" refY="2" viewBox="0,0,4,4"><circle cx="2" cy="2" fill="black" r="2" stroke="none" /></marker></defs><polygon class="name" points="102,25 193.75,25 200,50 193.75,75 102,75" /><text dy=".3em" text-anchor="middle" x="147.875" y="50">nums</text><rect class="list" height="50" width="40" x="275" y="25" /><rect class="list" height="50" width="40" x="315" y="25" /><rect class="list" height="50" width="40" x="355" y="25" /><path class="arrow" d="M 200,50 C 218,50 218,50 237,50 C 256,50 256,50 275,50" fill="none" marker-end="url(#id37)" /><circle class="int value" cx="300" cy="125" r="25" /><text dy=".3em" text-anchor="middle" x="300" y="125">1</text><circle class="int value" cx="360" cy="125" r="25" /><text dy=".3em" text-anchor="middle" x="360" y="125">2</text><circle class="int value" cx="420" cy="125" r="25" /><text dy=".3em" text-anchor="middle" x="420" y="125">3</text><path class="arrow" d="M 295,50 C 295,62 295,62 297,75 C 299,87 300,87 300,100" fill="none" marker-end="url(#id37)" marker-start="url(#id38)" /><path class="arrow" d="M 335,50 C 335,63 337,65 347,75 C 357,84 360,86 360,100" fill="none" marker-end="url(#id37)" marker-start="url(#id38)" /><path class="arrow" d="M 375,50 C 375,66 381,69 397,75 C 413,80 420,83 420,100" fill="none" marker-end="url(#id37)" marker-start="url(#id38)" /><polygon class="name" points="138,175 193.75,175 200,200 193.75,225 138,225" /><text dy=".3em" text-anchor="middle" x="165.875" y="200">x</text><circle class="int value" cx="300" cy="275" r="25" /><text dy=".3em" text-anchor="middle" x="300" y="275">10</text><path class="arrow" d="M 200,200 C 226,200 230,212 237,237 C 244,262 248,275 275,275" fill="none" marker-end="url(#id37)" /></svg>
@@ -1717,7 +1720,7 @@ work apply to this assignment.</p>
         nums = [1, 2, 3]
         for x in nums:          # x = nums[0] ...
             x = x * 10
-        print nums              # [1, 2, 3]   :(
+        print(nums)             # [1, 2, 3]   :(
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
     <svg baseProfile="full" height="325" version="1.1" width="500" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id39" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker><marker id="id40" markerHeight="4" markerWidth="4" orient="auto" refX="2" refY="2" viewBox="0,0,4,4"><circle cx="2" cy="2" fill="black" r="2" stroke="none" /></marker></defs><polygon class="name" points="102,25 193.75,25 200,50 193.75,75 102,75" /><text dy=".3em" text-anchor="middle" x="147.875" y="50">nums</text><rect class="list" height="50" width="40" x="275" y="25" /><rect class="list" height="50" width="40" x="315" y="25" /><rect class="list" height="50" width="40" x="355" y="25" /><path class="arrow" d="M 200,50 C 218,50 218,50 237,50 C 256,50 256,50 275,50" fill="none" marker-end="url(#id39)" /><circle class="int value" cx="300" cy="125" r="25" /><text dy=".3em" text-anchor="middle" x="300" y="125">1</text><circle class="int value" cx="360" cy="125" r="25" /><text dy=".3em" text-anchor="middle" x="360" y="125">2</text><circle class="int value" cx="420" cy="125" r="25" /><text dy=".3em" text-anchor="middle" x="420" y="125">3</text><path class="arrow" d="M 295,50 C 295,62 295,62 297,75 C 299,87 300,87 300,100" fill="none" marker-end="url(#id39)" marker-start="url(#id40)" /><path class="arrow" d="M 335,50 C 335,63 337,65 347,75 C 357,84 360,86 360,100" fill="none" marker-end="url(#id39)" marker-start="url(#id40)" /><path class="arrow" d="M 375,50 C 375,66 381,69 397,75 C 413,80 420,83 420,100" fill="none" marker-end="url(#id39)" marker-start="url(#id40)" /><polygon class="name" points="138,175 193.75,175 200,200 193.75,225 138,225" /><text dy=".3em" text-anchor="middle" x="165.875" y="200">x</text><circle class="int value" cx="300" cy="275" opacity="0.25" r="25" /><text dy=".3em" opacity="0.25" text-anchor="middle" x="300" y="275">10</text><path class="arrow" d="M 200,200 C 241,200 259,198 300,195 C 342,193 360,191 360,150" fill="none" marker-end="url(#id39)" /></svg>
@@ -1728,7 +1731,7 @@ work apply to this assignment.</p>
         nums = [1, 2, 3]
         for x in nums:          # x = nums[0] ...
             x = x * 10
-        print nums              # [1, 2, 3]   :(
+        print(nums)             # [1, 2, 3]   :(
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
     <svg baseProfile="full" height="325" version="1.1" width="500" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id41" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker><marker id="id42" markerHeight="4" markerWidth="4" orient="auto" refX="2" refY="2" viewBox="0,0,4,4"><circle cx="2" cy="2" fill="black" r="2" stroke="none" /></marker></defs><polygon class="name" points="102,25 193.75,25 200,50 193.75,75 102,75" /><text dy=".3em" text-anchor="middle" x="147.875" y="50">nums</text><rect class="list" height="50" width="40" x="275" y="25" /><rect class="list" height="50" width="40" x="315" y="25" /><rect class="list" height="50" width="40" x="355" y="25" /><path class="arrow" d="M 200,50 C 218,50 218,50 237,50 C 256,50 256,50 275,50" fill="none" marker-end="url(#id41)" /><circle class="int value" cx="300" cy="125" r="25" /><text dy=".3em" text-anchor="middle" x="300" y="125">1</text><circle class="int value" cx="360" cy="125" r="25" /><text dy=".3em" text-anchor="middle" x="360" y="125">2</text><circle class="int value" cx="420" cy="125" r="25" /><text dy=".3em" text-anchor="middle" x="420" y="125">3</text><path class="arrow" d="M 295,50 C 295,62 295,62 297,75 C 299,87 300,87 300,100" fill="none" marker-end="url(#id41)" marker-start="url(#id42)" /><path class="arrow" d="M 335,50 C 335,63 337,65 347,75 C 357,84 360,86 360,100" fill="none" marker-end="url(#id41)" marker-start="url(#id42)" /><path class="arrow" d="M 375,50 C 375,66 381,69 397,75 C 413,80 420,83 420,100" fill="none" marker-end="url(#id41)" marker-start="url(#id42)" /><polygon class="name" points="138,175 193.75,175 200,200 193.75,225 138,225" /><text dy=".3em" text-anchor="middle" x="165.875" y="200">x</text><path class="arrow" d="M 200,200 C 241,200 259,198 300,195 C 342,193 360,191 360,150" fill="none" marker-end="url(#id41)" /><circle class="int value" cx="360" cy="275" r="25" /><text dy=".3em" text-anchor="middle" x="360" y="275">20</text></svg>
@@ -1739,7 +1742,7 @@ work apply to this assignment.</p>
         nums = [1, 2, 3]
         for x in nums:          # x = nums[0] ...
             x = x * 10
-        print nums              # [1, 2, 3]   :(
+        print(nums)             # [1, 2, 3]   :(
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
     <svg baseProfile="full" height="325" version="1.1" width="500" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id43" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker><marker id="id44" markerHeight="4" markerWidth="4" orient="auto" refX="2" refY="2" viewBox="0,0,4,4"><circle cx="2" cy="2" fill="black" r="2" stroke="none" /></marker></defs><polygon class="name" points="102,25 193.75,25 200,50 193.75,75 102,75" /><text dy=".3em" text-anchor="middle" x="147.875" y="50">nums</text><rect class="list" height="50" width="40" x="275" y="25" /><rect class="list" height="50" width="40" x="315" y="25" /><rect class="list" height="50" width="40" x="355" y="25" /><path class="arrow" d="M 200,50 C 218,50 218,50 237,50 C 256,50 256,50 275,50" fill="none" marker-end="url(#id43)" /><circle class="int value" cx="300" cy="125" r="25" /><text dy=".3em" text-anchor="middle" x="300" y="125">1</text><circle class="int value" cx="360" cy="125" r="25" /><text dy=".3em" text-anchor="middle" x="360" y="125">2</text><circle class="int value" cx="420" cy="125" r="25" /><text dy=".3em" text-anchor="middle" x="420" y="125">3</text><path class="arrow" d="M 295,50 C 295,62 295,62 297,75 C 299,87 300,87 300,100" fill="none" marker-end="url(#id43)" marker-start="url(#id44)" /><path class="arrow" d="M 335,50 C 335,63 337,65 347,75 C 357,84 360,86 360,100" fill="none" marker-end="url(#id43)" marker-start="url(#id44)" /><path class="arrow" d="M 375,50 C 375,66 381,69 397,75 C 413,80 420,83 420,100" fill="none" marker-end="url(#id43)" marker-start="url(#id44)" /><polygon class="name" points="138,175 193.75,175 200,200 193.75,225 138,225" /><text dy=".3em" text-anchor="middle" x="165.875" y="200">x</text><circle class="int value" cx="360" cy="275" r="25" /><text dy=".3em" text-anchor="middle" x="360" y="275">20</text><path class="arrow" d="M 200,200 C 238,200 243,206 267,237 C 291,268 296,275 335,275" fill="none" marker-end="url(#id43)" /></svg>
@@ -1750,7 +1753,7 @@ work apply to this assignment.</p>
         nums = [1, 2, 3]
         for x in nums:          # x = nums[0] ...
             x = x * 10
-        print nums              # [1, 2, 3]   :(
+        print(nums)             # [1, 2, 3]   :(
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
     <svg baseProfile="full" height="325" version="1.1" width="500" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id45" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker><marker id="id46" markerHeight="4" markerWidth="4" orient="auto" refX="2" refY="2" viewBox="0,0,4,4"><circle cx="2" cy="2" fill="black" r="2" stroke="none" /></marker></defs><polygon class="name" points="102,25 193.75,25 200,50 193.75,75 102,75" /><text dy=".3em" text-anchor="middle" x="147.875" y="50">nums</text><rect class="list" height="50" width="40" x="275" y="25" /><rect class="list" height="50" width="40" x="315" y="25" /><rect class="list" height="50" width="40" x="355" y="25" /><path class="arrow" d="M 200,50 C 218,50 218,50 237,50 C 256,50 256,50 275,50" fill="none" marker-end="url(#id45)" /><circle class="int value" cx="300" cy="125" r="25" /><text dy=".3em" text-anchor="middle" x="300" y="125">1</text><circle class="int value" cx="360" cy="125" r="25" /><text dy=".3em" text-anchor="middle" x="360" y="125">2</text><circle class="int value" cx="420" cy="125" r="25" /><text dy=".3em" text-anchor="middle" x="420" y="125">3</text><path class="arrow" d="M 295,50 C 295,62 295,62 297,75 C 299,87 300,87 300,100" fill="none" marker-end="url(#id45)" marker-start="url(#id46)" /><path class="arrow" d="M 335,50 C 335,63 337,65 347,75 C 357,84 360,86 360,100" fill="none" marker-end="url(#id45)" marker-start="url(#id46)" /><path class="arrow" d="M 375,50 C 375,66 381,69 397,75 C 413,80 420,83 420,100" fill="none" marker-end="url(#id45)" marker-start="url(#id46)" /><polygon class="name" points="138,175 193.75,175 200,200 193.75,225 138,225" /><text dy=".3em" text-anchor="middle" x="165.875" y="200">x</text><circle class="int value" cx="360" cy="275" opacity="0.25" r="25" /><text dy=".3em" opacity="0.25" text-anchor="middle" x="360" y="275">20</text><path class="arrow" d="M 200,200 C 256,200 281,200 338,203 C 394,205 420,206 420,150" fill="none" marker-end="url(#id45)" /></svg>
@@ -1761,7 +1764,7 @@ work apply to this assignment.</p>
         nums = [1, 2, 3]
         for x in nums:          # x = nums[0] ...
             x = x * 10
-        print nums              # [1, 2, 3]   :(
+        print(nums)             # [1, 2, 3]   :(
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
     <svg baseProfile="full" height="325" version="1.1" width="500" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id47" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker><marker id="id48" markerHeight="4" markerWidth="4" orient="auto" refX="2" refY="2" viewBox="0,0,4,4"><circle cx="2" cy="2" fill="black" r="2" stroke="none" /></marker></defs><polygon class="name" points="102,25 193.75,25 200,50 193.75,75 102,75" /><text dy=".3em" text-anchor="middle" x="147.875" y="50">nums</text><rect class="list" height="50" width="40" x="275" y="25" /><rect class="list" height="50" width="40" x="315" y="25" /><rect class="list" height="50" width="40" x="355" y="25" /><path class="arrow" d="M 200,50 C 218,50 218,50 237,50 C 256,50 256,50 275,50" fill="none" marker-end="url(#id47)" /><circle class="int value" cx="300" cy="125" r="25" /><text dy=".3em" text-anchor="middle" x="300" y="125">1</text><circle class="int value" cx="360" cy="125" r="25" /><text dy=".3em" text-anchor="middle" x="360" y="125">2</text><circle class="int value" cx="420" cy="125" r="25" /><text dy=".3em" text-anchor="middle" x="420" y="125">3</text><path class="arrow" d="M 295,50 C 295,62 295,62 297,75 C 299,87 300,87 300,100" fill="none" marker-end="url(#id47)" marker-start="url(#id48)" /><path class="arrow" d="M 335,50 C 335,63 337,65 347,75 C 357,84 360,86 360,100" fill="none" marker-end="url(#id47)" marker-start="url(#id48)" /><path class="arrow" d="M 375,50 C 375,66 381,69 397,75 C 413,80 420,83 420,100" fill="none" marker-end="url(#id47)" marker-start="url(#id48)" /><polygon class="name" points="138,175 193.75,175 200,200 193.75,225 138,225" /><text dy=".3em" text-anchor="middle" x="165.875" y="200">x</text><path class="arrow" d="M 200,200 C 256,200 281,200 338,203 C 394,205 420,206 420,150" fill="none" marker-end="url(#id47)" /><circle class="int value" cx="420" cy="275" r="25" /><text dy=".3em" text-anchor="middle" x="420" y="275">30</text></svg>
@@ -1772,7 +1775,7 @@ work apply to this assignment.</p>
         nums = [1, 2, 3]
         for x in nums:          # x = nums[0] ...
             x = x * 10
-        print nums              # [1, 2, 3]   :(
+        print(nums)             # [1, 2, 3]   :(
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
     <svg baseProfile="full" height="325" version="1.1" width="500" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id49" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker><marker id="id50" markerHeight="4" markerWidth="4" orient="auto" refX="2" refY="2" viewBox="0,0,4,4"><circle cx="2" cy="2" fill="black" r="2" stroke="none" /></marker></defs><polygon class="name" points="102,25 193.75,25 200,50 193.75,75 102,75" /><text dy=".3em" text-anchor="middle" x="147.875" y="50">nums</text><rect class="list" height="50" width="40" x="275" y="25" /><rect class="list" height="50" width="40" x="315" y="25" /><rect class="list" height="50" width="40" x="355" y="25" /><path class="arrow" d="M 200,50 C 218,50 218,50 237,50 C 256,50 256,50 275,50" fill="none" marker-end="url(#id49)" /><circle class="int value" cx="300" cy="125" r="25" /><text dy=".3em" text-anchor="middle" x="300" y="125">1</text><circle class="int value" cx="360" cy="125" r="25" /><text dy=".3em" text-anchor="middle" x="360" y="125">2</text><circle class="int value" cx="420" cy="125" r="25" /><text dy=".3em" text-anchor="middle" x="420" y="125">3</text><path class="arrow" d="M 295,50 C 295,62 295,62 297,75 C 299,87 300,87 300,100" fill="none" marker-end="url(#id49)" marker-start="url(#id50)" /><path class="arrow" d="M 335,50 C 335,63 337,65 347,75 C 357,84 360,86 360,100" fill="none" marker-end="url(#id49)" marker-start="url(#id50)" /><path class="arrow" d="M 375,50 C 375,66 381,69 397,75 C 413,80 420,83 420,100" fill="none" marker-end="url(#id49)" marker-start="url(#id50)" /><polygon class="name" points="138,175 193.75,175 200,200 193.75,225 138,225" /><text dy=".3em" text-anchor="middle" x="165.875" y="200">x</text><circle class="int value" cx="420" cy="275" r="25" /><text dy=".3em" text-anchor="middle" x="420" y="275">30</text><path class="arrow" d="M 200,200 C 252,200 257,204 297,237 C 337,270 342,275 395,275" fill="none" marker-end="url(#id49)" /></svg>
@@ -1783,7 +1786,7 @@ work apply to this assignment.</p>
         nums = [1, 2, 3]
         for x in nums:          # x = nums[0] ...
             x = x * 10
-        print nums              # [1, 2, 3]   :(
+        print(nums)             # [1, 2, 3]   :(
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
     <svg baseProfile="full" height="325" version="1.1" width="500" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id51" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker><marker id="id52" markerHeight="4" markerWidth="4" orient="auto" refX="2" refY="2" viewBox="0,0,4,4"><circle cx="2" cy="2" fill="black" r="2" stroke="none" /></marker></defs><polygon class="name" points="102,25 193.75,25 200,50 193.75,75 102,75" /><text dy=".3em" text-anchor="middle" x="147.875" y="50">nums</text><rect class="list" height="50" width="40" x="275" y="25" /><rect class="list" height="50" width="40" x="315" y="25" /><rect class="list" height="50" width="40" x="355" y="25" /><path class="arrow" d="M 200,50 C 218,50 218,50 237,50 C 256,50 256,50 275,50" fill="none" marker-end="url(#id51)" /><circle class="int value" cx="300" cy="125" r="25" /><text dy=".3em" text-anchor="middle" x="300" y="125">1</text><circle class="int value" cx="360" cy="125" r="25" /><text dy=".3em" text-anchor="middle" x="360" y="125">2</text><circle class="int value" cx="420" cy="125" r="25" /><text dy=".3em" text-anchor="middle" x="420" y="125">3</text><path class="arrow" d="M 295,50 C 295,62 295,62 297,75 C 299,87 300,87 300,100" fill="none" marker-end="url(#id51)" marker-start="url(#id52)" /><path class="arrow" d="M 335,50 C 335,63 337,65 347,75 C 357,84 360,86 360,100" fill="none" marker-end="url(#id51)" marker-start="url(#id52)" /><path class="arrow" d="M 375,50 C 375,66 381,69 397,75 C 413,80 420,83 420,100" fill="none" marker-end="url(#id51)" marker-start="url(#id52)" /><polygon class="name" points="138,175 193.75,175 200,200 193.75,225 138,225" /><text dy=".3em" text-anchor="middle" x="165.875" y="200">x</text><circle class="int value" cx="420" cy="275" r="25" /><text dy=".3em" text-anchor="middle" x="420" y="275">30</text><path class="arrow" d="M 200,200 C 252,200 257,204 297,237 C 337,270 342,275 395,275" fill="none" marker-end="url(#id51)" /></svg>
@@ -1804,7 +1807,7 @@ A simple approach might be this:</p>
 nums = [1, 2, 3]
 for x in nums:          # x = nums[0] ...
     x = x * 10
-print nums              # [1, 2, 3]   :(
+print(nums)             # [1, 2, 3]   :(
 </code>
 
 <p>but it doesn't work.  To see why, remember that on the first iteration, x is
@@ -1829,12 +1832,12 @@ nums = [ 10*x for x in nums ]
     <!--[[[cog
     code = '''\
         def func(x):
-            print x
+            print(x)
             return
 
         num = 17
         func(num)
-        print num
+        print(num)
         '''
 
     def figure(frame):
@@ -1857,23 +1860,23 @@ nums = [ 10*x for x in nums ]
     <div class="overlay">
     <pre class="python tophalf">
         def func(x):
-            print x
+            print(x)
             return
 
         num = 17
         func(num)
-        print num
+        print(num)
         </pre>
     </div>
     <div class="overlay incremental">
     <pre class="python tophalf" select="5">
         def func(x):
-            print x
+            print(x)
             return
 
         num = 17
         func(num)
-        print num
+        print(num)
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
     <svg baseProfile="full" height="250" version="1.1" width="500" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id53" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="114,25 193.75,25 200,50 193.75,75 114,75" /><text dy=".3em" text-anchor="middle" x="153.875" y="50">num</text><circle class="int value" cx="300" cy="50" r="25" /><text dy=".3em" text-anchor="middle" x="300" y="50">17</text><path class="arrow" d="M 200,50 C 218,50 218,50 237,50 C 256,50 256,50 275,50" fill="none" marker-end="url(#id53)" /></svg>
@@ -1882,12 +1885,12 @@ nums = [ 10*x for x in nums ]
     <div class="overlay incremental">
     <pre class="python tophalf" select="6,1">
         def func(x):
-            print x
+            print(x)
             return
 
         num = 17
         func(num)
-        print num
+        print(num)
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
     <svg baseProfile="full" height="250" version="1.1" width="500" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id54" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="114,25 193.75,25 200,50 193.75,75 114,75" /><text dy=".3em" text-anchor="middle" x="153.875" y="50">num</text><circle class="int value" cx="300" cy="50" r="25" /><text dy=".3em" text-anchor="middle" x="300" y="50">17</text><path class="arrow" d="M 200,50 C 218,50 218,50 237,50 C 256,50 256,50 275,50" fill="none" marker-end="url(#id54)" /><rect class="frame" height="125" rx="20" ry="20" width="200" x="25" y="100" /><text class="framelabel" dy=".3em" opacity="1" text-anchor="middle" x="125" y="125">func</text><polygon class="name" points="138,150 193.75,150 200,175 193.75,200 138,200" /><text dy=".3em" text-anchor="middle" x="165.875" y="175">x</text><path class="arrow" d="M 200,175 C 236,175 236,148 237,112 C 238,76 238,50 275,50" fill="none" marker-end="url(#id54)" /></svg>
@@ -1896,12 +1899,12 @@ nums = [ 10*x for x in nums ]
     <div class="overlay incremental">
     <pre class="python tophalf" select="1">
         def func(x):
-            print x
+            print(x)
             return
 
         num = 17
         func(num)
-        print num
+        print(num)
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
     <svg baseProfile="full" height="250" version="1.1" width="500" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id55" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="114,25 193.75,25 200,50 193.75,75 114,75" /><text dy=".3em" text-anchor="middle" x="153.875" y="50">num</text><circle class="int value" cx="300" cy="50" r="25" /><text dy=".3em" text-anchor="middle" x="300" y="50">17</text><path class="arrow" d="M 200,50 C 218,50 218,50 237,50 C 256,50 256,50 275,50" fill="none" marker-end="url(#id55)" /><rect class="frame" height="125" rx="20" ry="20" width="200" x="25" y="100" /><text class="framelabel" dy=".3em" opacity="1" text-anchor="middle" x="125" y="125">func</text><polygon class="name" points="138,150 193.75,150 200,175 193.75,200 138,200" /><text dy=".3em" text-anchor="middle" x="165.875" y="175">x</text><path class="arrow" d="M 200,175 C 236,175 236,148 237,112 C 238,76 238,50 275,50" fill="none" marker-end="url(#id55)" /></svg>
@@ -1910,12 +1913,12 @@ nums = [ 10*x for x in nums ]
     <div class="overlay incremental">
     <pre class="python tophalf" select="2">
         def func(x):
-            print x
+            print(x)
             return
 
         num = 17
         func(num)
-        print num
+        print(num)
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
     <svg baseProfile="full" height="250" version="1.1" width="500" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id56" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="114,25 193.75,25 200,50 193.75,75 114,75" /><text dy=".3em" text-anchor="middle" x="153.875" y="50">num</text><circle class="int value" cx="300" cy="50" r="25" /><text dy=".3em" text-anchor="middle" x="300" y="50">17</text><path class="arrow" d="M 200,50 C 218,50 218,50 237,50 C 256,50 256,50 275,50" fill="none" marker-end="url(#id56)" /><rect class="frame" height="125" rx="20" ry="20" width="200" x="25" y="100" /><text class="framelabel" dy=".3em" opacity="1" text-anchor="middle" x="125" y="125">func</text><polygon class="name" points="138,150 193.75,150 200,175 193.75,200 138,200" /><text dy=".3em" text-anchor="middle" x="165.875" y="175">x</text><path class="arrow" d="M 200,175 C 236,175 236,148 237,112 C 238,76 238,50 275,50" fill="none" marker-end="url(#id56)" /></svg>
@@ -1924,12 +1927,12 @@ nums = [ 10*x for x in nums ]
     <div class="overlay incremental">
     <pre class="python tophalf" select="3">
         def func(x):
-            print x
+            print(x)
             return
 
         num = 17
         func(num)
-        print num
+        print(num)
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
     <svg baseProfile="full" height="250" version="1.1" width="500" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id57" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="114,25 193.75,25 200,50 193.75,75 114,75" /><text dy=".3em" text-anchor="middle" x="153.875" y="50">num</text><circle class="int value" cx="300" cy="50" r="25" /><text dy=".3em" text-anchor="middle" x="300" y="50">17</text><path class="arrow" d="M 200,50 C 218,50 218,50 237,50 C 256,50 256,50 275,50" fill="none" marker-end="url(#id57)" /><rect class="frame" height="125" opacity="0.25" rx="20" ry="20" width="200" x="25" y="100" /><text class="framelabel" dy=".3em" opacity="0.25" text-anchor="middle" x="125" y="125">func</text><polygon class="name" opacity="0.25" points="138,150 193.75,150 200,175 193.75,200 138,200" /><text dy=".3em" opacity="0.25" text-anchor="middle" x="165.875" y="175">x</text><path class="arrow" d="M 200,175 C 236,175 236,148 237,112 C 238,76 238,50 275,50" fill="none" marker-end="url(#id57)" opacity="0.25" /></svg>
@@ -1938,12 +1941,12 @@ nums = [ 10*x for x in nums ]
     <div class="overlay incremental">
     <pre class="python tophalf" select="7">
         def func(x):
-            print x
+            print(x)
             return
 
         num = 17
         func(num)
-        print num
+        print(num)
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
     <svg baseProfile="full" height="250" version="1.1" width="500" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id58" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="114,25 193.75,25 200,50 193.75,75 114,75" /><text dy=".3em" text-anchor="middle" x="153.875" y="50">num</text><circle class="int value" cx="300" cy="50" r="25" /><text dy=".3em" text-anchor="middle" x="300" y="50">17</text><path class="arrow" d="M 200,50 C 218,50 218,50 237,50 C 256,50 256,50 275,50" fill="none" marker-end="url(#id58)" /></svg>
@@ -1962,7 +1965,7 @@ formal parameters, as x is here:</p>
 
 <code lang="py">
 def func(x):
-    print x
+    print(x)
 </code>
 
 <p>When you call a function, you provide actual argument values:</p>
@@ -1970,7 +1973,7 @@ def func(x):
 <code lang="py">
 num = 17
 func(num)
-print num
+print(num)
 </code>
 
 <p>Here num is the value supplied for the parameter x.  When the function is
