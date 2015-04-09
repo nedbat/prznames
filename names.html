@@ -1948,16 +1948,52 @@ nums = [ 10*x for x in nums ]
     <!--[[[end]]]-->
 </div>
 
+<div class="text"><!-- {{{ -->
+
+<p>Function arguments are perhaps the most important thing that doesn't look
+like an assignment, but is.  When you define a function, you specify its 
+formal parameters, as x is here:</p>
+
+<code lang="py">
+def func(x):
+    print x
+</code>
+
+<p>When you call a function, you provide actual argument values:</p>
+
+<code lang="py">
+num = 17
+func(num)
+print num
+</code>
+
+<p>Here num is the value supplied for the parameter x.  When the function is
+called, we get the exact same behavior as if we had executed "x = num".  The
+actual value is assigned to the parameter.</p>
+
+<p>Each function call creates a stack frame, which is a container for the names
+local to that function.  The name x is local to the function, but the assignment
+semantics are the same.</p>
+
+<p>When we are inside func, there is a value (17) with two names: num in the
+calling frame, and x in the function's frame.</p>
+
+<p>When the function returns, the function's stack frame is destroyed, which
+destroys the names it contains, which may or may not reclaim values if they
+were the last names referring to the values.</p>
+
+</div><!-- }}} -->
+
 <div class="slide">
     <!--[[[cog
     code = '''\
-        def augment_twice(a_list, val):
+        def append_twice(a_list, val):
             a_list.append(val)
             a_list.append(val)
             return
 
         nums = [1, 2, 3]
-        augment_twice(nums, 7)
+        append_twice(nums, 7)
         print(nums)         # [1, 2, 3, 7, 7]
         '''
 
@@ -1968,7 +2004,7 @@ nums = [ 10*x for x in nums ]
         l_nums = fig.list(texts=["1", "2", "3"], pos=fig.val_for_name(n_nums))
         fig.reference(n_nums, l_nums[0])
 
-        fig.frame(pos=fig.next_frame(), size=(200,200), text="augment_twice", rise=2, set=6, fade=1)
+        fig.frame(pos=fig.next_frame(), size=(200,200), text="append_twice", rise=2, set=6, fade=1)
         n_a_list = auto_name(fig, "a_list", rise=2, set=6, fade=1)
         fig.reference(n_a_list, l_nums[0])
         n_val = auto_name(fig, "val", rise=2, set=6, fade=1)
@@ -1988,25 +2024,25 @@ nums = [ 10*x for x in nums ]
     <div class="overlay_container">
     <div class="overlay">
     <pre class="python tophalf">
-        def augment_twice(a_list, val):
+        def append_twice(a_list, val):
             a_list.append(val)
             a_list.append(val)
             return
 
         nums = [1, 2, 3]
-        augment_twice(nums, 7)
+        append_twice(nums, 7)
         print(nums)         # [1, 2, 3, 7, 7]
         </pre>
     </div>
     <div class="overlay incremental">
     <pre class="python tophalf" select="6">
-        def augment_twice(a_list, val):
+        def append_twice(a_list, val):
             a_list.append(val)
             a_list.append(val)
             return
 
         nums = [1, 2, 3]
-        augment_twice(nums, 7)
+        append_twice(nums, 7)
         print(nums)         # [1, 2, 3, 7, 7]
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
@@ -2015,88 +2051,88 @@ nums = [ 10*x for x in nums ]
     </div>
     <div class="overlay incremental">
     <pre class="python tophalf" select="7,1">
-        def augment_twice(a_list, val):
+        def append_twice(a_list, val):
             a_list.append(val)
             a_list.append(val)
             return
 
         nums = [1, 2, 3]
-        augment_twice(nums, 7)
+        append_twice(nums, 7)
         print(nums)         # [1, 2, 3, 7, 7]
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
-    <svg baseProfile="full" height="325" version="1.1" width="500" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id60" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="102,25 193.75,25 200,50 193.75,75 102,75" /><text dy=".3em" text-anchor="middle" x="147.875" y="50">nums</text><rect class="list" height="50" width="40" x="275" y="25" /><text dy=".3em" text-anchor="middle" x="295" y="50">1</text><rect class="list" height="50" width="40" x="315" y="25" /><text dy=".3em" text-anchor="middle" x="335" y="50">2</text><rect class="list" height="50" width="40" x="355" y="25" /><text dy=".3em" text-anchor="middle" x="375" y="50">3</text><path class="arrow" d="M 200,50 C 218,50 218,50 237,50 C 256,50 256,50 275,50" fill="none" marker-end="url(#id60)" /><rect class="frame" height="200" rx="20" ry="20" width="200" x="25" y="100" /><text class="framelabel" dy=".3em" opacity="1" text-anchor="middle" x="125" y="125">augment_twice</text><polygon class="name" points="78,150 193.75,150 200,175 193.75,200 78,200" /><text dy=".3em" text-anchor="middle" x="135.875" y="175">a_list</text><path class="arrow" d="M 200,175 C 236,175 236,148 237,112 C 238,76 238,50 275,50" fill="none" marker-end="url(#id60)" /><polygon class="name" points="114,225 193.75,225 200,250 193.75,275 114,275" /><text dy=".3em" text-anchor="middle" x="153.875" y="250">val</text><circle class="int value" cx="300" cy="250" r="25" /><text dy=".3em" text-anchor="middle" x="300" y="250">7</text><path class="arrow" d="M 200,250 C 218,250 218,250 237,250 C 256,250 256,250 275,250" fill="none" marker-end="url(#id60)" /></svg>
+    <svg baseProfile="full" height="325" version="1.1" width="500" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id60" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="102,25 193.75,25 200,50 193.75,75 102,75" /><text dy=".3em" text-anchor="middle" x="147.875" y="50">nums</text><rect class="list" height="50" width="40" x="275" y="25" /><text dy=".3em" text-anchor="middle" x="295" y="50">1</text><rect class="list" height="50" width="40" x="315" y="25" /><text dy=".3em" text-anchor="middle" x="335" y="50">2</text><rect class="list" height="50" width="40" x="355" y="25" /><text dy=".3em" text-anchor="middle" x="375" y="50">3</text><path class="arrow" d="M 200,50 C 218,50 218,50 237,50 C 256,50 256,50 275,50" fill="none" marker-end="url(#id60)" /><rect class="frame" height="200" rx="20" ry="20" width="200" x="25" y="100" /><text class="framelabel" dy=".3em" opacity="1" text-anchor="middle" x="125" y="125">append_twice</text><polygon class="name" points="78,150 193.75,150 200,175 193.75,200 78,200" /><text dy=".3em" text-anchor="middle" x="135.875" y="175">a_list</text><path class="arrow" d="M 200,175 C 236,175 236,148 237,112 C 238,76 238,50 275,50" fill="none" marker-end="url(#id60)" /><polygon class="name" points="114,225 193.75,225 200,250 193.75,275 114,275" /><text dy=".3em" text-anchor="middle" x="153.875" y="250">val</text><circle class="int value" cx="300" cy="250" r="25" /><text dy=".3em" text-anchor="middle" x="300" y="250">7</text><path class="arrow" d="M 200,250 C 218,250 218,250 237,250 C 256,250 256,250 275,250" fill="none" marker-end="url(#id60)" /></svg>
     </div>
     </div>
     <div class="overlay incremental">
     <pre class="python tophalf" select="1">
-        def augment_twice(a_list, val):
+        def append_twice(a_list, val):
             a_list.append(val)
             a_list.append(val)
             return
 
         nums = [1, 2, 3]
-        augment_twice(nums, 7)
+        append_twice(nums, 7)
         print(nums)         # [1, 2, 3, 7, 7]
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
-    <svg baseProfile="full" height="325" version="1.1" width="500" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id61" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="102,25 193.75,25 200,50 193.75,75 102,75" /><text dy=".3em" text-anchor="middle" x="147.875" y="50">nums</text><rect class="list" height="50" width="40" x="275" y="25" /><text dy=".3em" text-anchor="middle" x="295" y="50">1</text><rect class="list" height="50" width="40" x="315" y="25" /><text dy=".3em" text-anchor="middle" x="335" y="50">2</text><rect class="list" height="50" width="40" x="355" y="25" /><text dy=".3em" text-anchor="middle" x="375" y="50">3</text><path class="arrow" d="M 200,50 C 218,50 218,50 237,50 C 256,50 256,50 275,50" fill="none" marker-end="url(#id61)" /><rect class="frame" height="200" rx="20" ry="20" width="200" x="25" y="100" /><text class="framelabel" dy=".3em" opacity="1" text-anchor="middle" x="125" y="125">augment_twice</text><polygon class="name" points="78,150 193.75,150 200,175 193.75,200 78,200" /><text dy=".3em" text-anchor="middle" x="135.875" y="175">a_list</text><path class="arrow" d="M 200,175 C 236,175 236,148 237,112 C 238,76 238,50 275,50" fill="none" marker-end="url(#id61)" /><polygon class="name" points="114,225 193.75,225 200,250 193.75,275 114,275" /><text dy=".3em" text-anchor="middle" x="153.875" y="250">val</text><circle class="int value" cx="300" cy="250" r="25" /><text dy=".3em" text-anchor="middle" x="300" y="250">7</text><path class="arrow" d="M 200,250 C 218,250 218,250 237,250 C 256,250 256,250 275,250" fill="none" marker-end="url(#id61)" /></svg>
+    <svg baseProfile="full" height="325" version="1.1" width="500" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id61" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="102,25 193.75,25 200,50 193.75,75 102,75" /><text dy=".3em" text-anchor="middle" x="147.875" y="50">nums</text><rect class="list" height="50" width="40" x="275" y="25" /><text dy=".3em" text-anchor="middle" x="295" y="50">1</text><rect class="list" height="50" width="40" x="315" y="25" /><text dy=".3em" text-anchor="middle" x="335" y="50">2</text><rect class="list" height="50" width="40" x="355" y="25" /><text dy=".3em" text-anchor="middle" x="375" y="50">3</text><path class="arrow" d="M 200,50 C 218,50 218,50 237,50 C 256,50 256,50 275,50" fill="none" marker-end="url(#id61)" /><rect class="frame" height="200" rx="20" ry="20" width="200" x="25" y="100" /><text class="framelabel" dy=".3em" opacity="1" text-anchor="middle" x="125" y="125">append_twice</text><polygon class="name" points="78,150 193.75,150 200,175 193.75,200 78,200" /><text dy=".3em" text-anchor="middle" x="135.875" y="175">a_list</text><path class="arrow" d="M 200,175 C 236,175 236,148 237,112 C 238,76 238,50 275,50" fill="none" marker-end="url(#id61)" /><polygon class="name" points="114,225 193.75,225 200,250 193.75,275 114,275" /><text dy=".3em" text-anchor="middle" x="153.875" y="250">val</text><circle class="int value" cx="300" cy="250" r="25" /><text dy=".3em" text-anchor="middle" x="300" y="250">7</text><path class="arrow" d="M 200,250 C 218,250 218,250 237,250 C 256,250 256,250 275,250" fill="none" marker-end="url(#id61)" /></svg>
     </div>
     </div>
     <div class="overlay incremental">
     <pre class="python tophalf" select="2">
-        def augment_twice(a_list, val):
+        def append_twice(a_list, val):
             a_list.append(val)
             a_list.append(val)
             return
 
         nums = [1, 2, 3]
-        augment_twice(nums, 7)
+        append_twice(nums, 7)
         print(nums)         # [1, 2, 3, 7, 7]
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
-    <svg baseProfile="full" height="325" version="1.1" width="500" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id62" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="102,25 193.75,25 200,50 193.75,75 102,75" /><text dy=".3em" text-anchor="middle" x="147.875" y="50">nums</text><rect class="list" height="50" width="40" x="275" y="25" /><text dy=".3em" text-anchor="middle" x="295" y="50">1</text><rect class="list" height="50" width="40" x="315" y="25" /><text dy=".3em" text-anchor="middle" x="335" y="50">2</text><rect class="list" height="50" width="40" x="355" y="25" /><text dy=".3em" text-anchor="middle" x="375" y="50">3</text><path class="arrow" d="M 200,50 C 218,50 218,50 237,50 C 256,50 256,50 275,50" fill="none" marker-end="url(#id62)" /><rect class="frame" height="200" rx="20" ry="20" width="200" x="25" y="100" /><text class="framelabel" dy=".3em" opacity="1" text-anchor="middle" x="125" y="125">augment_twice</text><polygon class="name" points="78,150 193.75,150 200,175 193.75,200 78,200" /><text dy=".3em" text-anchor="middle" x="135.875" y="175">a_list</text><path class="arrow" d="M 200,175 C 236,175 236,148 237,112 C 238,76 238,50 275,50" fill="none" marker-end="url(#id62)" /><polygon class="name" points="114,225 193.75,225 200,250 193.75,275 114,275" /><text dy=".3em" text-anchor="middle" x="153.875" y="250">val</text><circle class="int value" cx="300" cy="250" r="25" /><text dy=".3em" text-anchor="middle" x="300" y="250">7</text><path class="arrow" d="M 200,250 C 218,250 218,250 237,250 C 256,250 256,250 275,250" fill="none" marker-end="url(#id62)" /><rect class="list" height="50" width="40" x="275" y="25" /><text dy=".3em" text-anchor="middle" x="295" y="50">1</text><rect class="list" height="50" width="40" x="315" y="25" /><text dy=".3em" text-anchor="middle" x="335" y="50">2</text><rect class="list" height="50" width="40" x="355" y="25" /><text dy=".3em" text-anchor="middle" x="375" y="50">3</text><rect class="list" height="50" width="40" x="395" y="25" /><text dy=".3em" text-anchor="middle" x="415" y="50">7</text><rect class="highlight" height="60" rx="5" ry="5" width="50" x="390" y="20" /><rect class="highlight" height="60" rx="5" ry="5" width="132" x="73" y="145" /></svg>
+    <svg baseProfile="full" height="325" version="1.1" width="500" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id62" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="102,25 193.75,25 200,50 193.75,75 102,75" /><text dy=".3em" text-anchor="middle" x="147.875" y="50">nums</text><rect class="list" height="50" width="40" x="275" y="25" /><text dy=".3em" text-anchor="middle" x="295" y="50">1</text><rect class="list" height="50" width="40" x="315" y="25" /><text dy=".3em" text-anchor="middle" x="335" y="50">2</text><rect class="list" height="50" width="40" x="355" y="25" /><text dy=".3em" text-anchor="middle" x="375" y="50">3</text><path class="arrow" d="M 200,50 C 218,50 218,50 237,50 C 256,50 256,50 275,50" fill="none" marker-end="url(#id62)" /><rect class="frame" height="200" rx="20" ry="20" width="200" x="25" y="100" /><text class="framelabel" dy=".3em" opacity="1" text-anchor="middle" x="125" y="125">append_twice</text><polygon class="name" points="78,150 193.75,150 200,175 193.75,200 78,200" /><text dy=".3em" text-anchor="middle" x="135.875" y="175">a_list</text><path class="arrow" d="M 200,175 C 236,175 236,148 237,112 C 238,76 238,50 275,50" fill="none" marker-end="url(#id62)" /><polygon class="name" points="114,225 193.75,225 200,250 193.75,275 114,275" /><text dy=".3em" text-anchor="middle" x="153.875" y="250">val</text><circle class="int value" cx="300" cy="250" r="25" /><text dy=".3em" text-anchor="middle" x="300" y="250">7</text><path class="arrow" d="M 200,250 C 218,250 218,250 237,250 C 256,250 256,250 275,250" fill="none" marker-end="url(#id62)" /><rect class="list" height="50" width="40" x="275" y="25" /><text dy=".3em" text-anchor="middle" x="295" y="50">1</text><rect class="list" height="50" width="40" x="315" y="25" /><text dy=".3em" text-anchor="middle" x="335" y="50">2</text><rect class="list" height="50" width="40" x="355" y="25" /><text dy=".3em" text-anchor="middle" x="375" y="50">3</text><rect class="list" height="50" width="40" x="395" y="25" /><text dy=".3em" text-anchor="middle" x="415" y="50">7</text><rect class="highlight" height="60" rx="5" ry="5" width="50" x="390" y="20" /><rect class="highlight" height="60" rx="5" ry="5" width="132" x="73" y="145" /></svg>
     </div>
     </div>
     <div class="overlay incremental">
     <pre class="python tophalf" select="3">
-        def augment_twice(a_list, val):
+        def append_twice(a_list, val):
             a_list.append(val)
             a_list.append(val)
             return
 
         nums = [1, 2, 3]
-        augment_twice(nums, 7)
+        append_twice(nums, 7)
         print(nums)         # [1, 2, 3, 7, 7]
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
-    <svg baseProfile="full" height="325" version="1.1" width="500" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id63" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="102,25 193.75,25 200,50 193.75,75 102,75" /><text dy=".3em" text-anchor="middle" x="147.875" y="50">nums</text><rect class="list" height="50" width="40" x="275" y="25" /><text dy=".3em" text-anchor="middle" x="295" y="50">1</text><rect class="list" height="50" width="40" x="315" y="25" /><text dy=".3em" text-anchor="middle" x="335" y="50">2</text><rect class="list" height="50" width="40" x="355" y="25" /><text dy=".3em" text-anchor="middle" x="375" y="50">3</text><path class="arrow" d="M 200,50 C 218,50 218,50 237,50 C 256,50 256,50 275,50" fill="none" marker-end="url(#id63)" /><rect class="frame" height="200" rx="20" ry="20" width="200" x="25" y="100" /><text class="framelabel" dy=".3em" opacity="1" text-anchor="middle" x="125" y="125">augment_twice</text><polygon class="name" points="78,150 193.75,150 200,175 193.75,200 78,200" /><text dy=".3em" text-anchor="middle" x="135.875" y="175">a_list</text><path class="arrow" d="M 200,175 C 236,175 236,148 237,112 C 238,76 238,50 275,50" fill="none" marker-end="url(#id63)" /><polygon class="name" points="114,225 193.75,225 200,250 193.75,275 114,275" /><text dy=".3em" text-anchor="middle" x="153.875" y="250">val</text><circle class="int value" cx="300" cy="250" r="25" /><text dy=".3em" text-anchor="middle" x="300" y="250">7</text><path class="arrow" d="M 200,250 C 218,250 218,250 237,250 C 256,250 256,250 275,250" fill="none" marker-end="url(#id63)" /><rect class="list" height="50" width="40" x="275" y="25" /><text dy=".3em" text-anchor="middle" x="295" y="50">1</text><rect class="list" height="50" width="40" x="315" y="25" /><text dy=".3em" text-anchor="middle" x="335" y="50">2</text><rect class="list" height="50" width="40" x="355" y="25" /><text dy=".3em" text-anchor="middle" x="375" y="50">3</text><rect class="list" height="50" width="40" x="395" y="25" /><text dy=".3em" text-anchor="middle" x="415" y="50">7</text><rect class="highlight" height="60" rx="5" ry="5" width="132" x="73" y="145" /><rect class="list" height="50" width="40" x="275" y="25" /><text dy=".3em" text-anchor="middle" x="295" y="50">1</text><rect class="list" height="50" width="40" x="315" y="25" /><text dy=".3em" text-anchor="middle" x="335" y="50">2</text><rect class="list" height="50" width="40" x="355" y="25" /><text dy=".3em" text-anchor="middle" x="375" y="50">3</text><rect class="list" height="50" width="40" x="395" y="25" /><text dy=".3em" text-anchor="middle" x="415" y="50">7</text><rect class="list" height="50" width="40" x="435" y="25" /><text dy=".3em" text-anchor="middle" x="455" y="50">7</text><rect class="highlight" height="60" rx="5" ry="5" width="50" x="430" y="20" /></svg>
+    <svg baseProfile="full" height="325" version="1.1" width="500" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id63" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="102,25 193.75,25 200,50 193.75,75 102,75" /><text dy=".3em" text-anchor="middle" x="147.875" y="50">nums</text><rect class="list" height="50" width="40" x="275" y="25" /><text dy=".3em" text-anchor="middle" x="295" y="50">1</text><rect class="list" height="50" width="40" x="315" y="25" /><text dy=".3em" text-anchor="middle" x="335" y="50">2</text><rect class="list" height="50" width="40" x="355" y="25" /><text dy=".3em" text-anchor="middle" x="375" y="50">3</text><path class="arrow" d="M 200,50 C 218,50 218,50 237,50 C 256,50 256,50 275,50" fill="none" marker-end="url(#id63)" /><rect class="frame" height="200" rx="20" ry="20" width="200" x="25" y="100" /><text class="framelabel" dy=".3em" opacity="1" text-anchor="middle" x="125" y="125">append_twice</text><polygon class="name" points="78,150 193.75,150 200,175 193.75,200 78,200" /><text dy=".3em" text-anchor="middle" x="135.875" y="175">a_list</text><path class="arrow" d="M 200,175 C 236,175 236,148 237,112 C 238,76 238,50 275,50" fill="none" marker-end="url(#id63)" /><polygon class="name" points="114,225 193.75,225 200,250 193.75,275 114,275" /><text dy=".3em" text-anchor="middle" x="153.875" y="250">val</text><circle class="int value" cx="300" cy="250" r="25" /><text dy=".3em" text-anchor="middle" x="300" y="250">7</text><path class="arrow" d="M 200,250 C 218,250 218,250 237,250 C 256,250 256,250 275,250" fill="none" marker-end="url(#id63)" /><rect class="list" height="50" width="40" x="275" y="25" /><text dy=".3em" text-anchor="middle" x="295" y="50">1</text><rect class="list" height="50" width="40" x="315" y="25" /><text dy=".3em" text-anchor="middle" x="335" y="50">2</text><rect class="list" height="50" width="40" x="355" y="25" /><text dy=".3em" text-anchor="middle" x="375" y="50">3</text><rect class="list" height="50" width="40" x="395" y="25" /><text dy=".3em" text-anchor="middle" x="415" y="50">7</text><rect class="highlight" height="60" rx="5" ry="5" width="132" x="73" y="145" /><rect class="list" height="50" width="40" x="275" y="25" /><text dy=".3em" text-anchor="middle" x="295" y="50">1</text><rect class="list" height="50" width="40" x="315" y="25" /><text dy=".3em" text-anchor="middle" x="335" y="50">2</text><rect class="list" height="50" width="40" x="355" y="25" /><text dy=".3em" text-anchor="middle" x="375" y="50">3</text><rect class="list" height="50" width="40" x="395" y="25" /><text dy=".3em" text-anchor="middle" x="415" y="50">7</text><rect class="list" height="50" width="40" x="435" y="25" /><text dy=".3em" text-anchor="middle" x="455" y="50">7</text><rect class="highlight" height="60" rx="5" ry="5" width="50" x="430" y="20" /></svg>
     </div>
     </div>
     <div class="overlay incremental">
     <pre class="python tophalf" select="4">
-        def augment_twice(a_list, val):
+        def append_twice(a_list, val):
             a_list.append(val)
             a_list.append(val)
             return
 
         nums = [1, 2, 3]
-        augment_twice(nums, 7)
+        append_twice(nums, 7)
         print(nums)         # [1, 2, 3, 7, 7]
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
-    <svg baseProfile="full" height="325" version="1.1" width="500" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id64" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="102,25 193.75,25 200,50 193.75,75 102,75" /><text dy=".3em" text-anchor="middle" x="147.875" y="50">nums</text><rect class="list" height="50" width="40" x="275" y="25" /><text dy=".3em" text-anchor="middle" x="295" y="50">1</text><rect class="list" height="50" width="40" x="315" y="25" /><text dy=".3em" text-anchor="middle" x="335" y="50">2</text><rect class="list" height="50" width="40" x="355" y="25" /><text dy=".3em" text-anchor="middle" x="375" y="50">3</text><path class="arrow" d="M 200,50 C 218,50 218,50 237,50 C 256,50 256,50 275,50" fill="none" marker-end="url(#id64)" /><rect class="frame" height="200" opacity="0.25" rx="20" ry="20" width="200" x="25" y="100" /><text class="framelabel" dy=".3em" opacity="0.25" text-anchor="middle" x="125" y="125">augment_twice</text><polygon class="name" opacity="0.25" points="78,150 193.75,150 200,175 193.75,200 78,200" /><text dy=".3em" opacity="0.25" text-anchor="middle" x="135.875" y="175">a_list</text><path class="arrow" d="M 200,175 C 236,175 236,148 237,112 C 238,76 238,50 275,50" fill="none" marker-end="url(#id64)" opacity="0.25" /><polygon class="name" opacity="0.25" points="114,225 193.75,225 200,250 193.75,275 114,275" /><text dy=".3em" opacity="0.25" text-anchor="middle" x="153.875" y="250">val</text><circle class="int value" cx="300" cy="250" r="25" /><text dy=".3em" text-anchor="middle" x="300" y="250">7</text><path class="arrow" d="M 200,250 C 218,250 218,250 237,250 C 256,250 256,250 275,250" fill="none" marker-end="url(#id64)" opacity="0.25" /><rect class="list" height="50" width="40" x="275" y="25" /><text dy=".3em" text-anchor="middle" x="295" y="50">1</text><rect class="list" height="50" width="40" x="315" y="25" /><text dy=".3em" text-anchor="middle" x="335" y="50">2</text><rect class="list" height="50" width="40" x="355" y="25" /><text dy=".3em" text-anchor="middle" x="375" y="50">3</text><rect class="list" height="50" width="40" x="395" y="25" /><text dy=".3em" text-anchor="middle" x="415" y="50">7</text><rect class="list" height="50" width="40" x="275" y="25" /><text dy=".3em" text-anchor="middle" x="295" y="50">1</text><rect class="list" height="50" width="40" x="315" y="25" /><text dy=".3em" text-anchor="middle" x="335" y="50">2</text><rect class="list" height="50" width="40" x="355" y="25" /><text dy=".3em" text-anchor="middle" x="375" y="50">3</text><rect class="list" height="50" width="40" x="395" y="25" /><text dy=".3em" text-anchor="middle" x="415" y="50">7</text><rect class="list" height="50" width="40" x="435" y="25" /><text dy=".3em" text-anchor="middle" x="455" y="50">7</text></svg>
+    <svg baseProfile="full" height="325" version="1.1" width="500" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id64" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="102,25 193.75,25 200,50 193.75,75 102,75" /><text dy=".3em" text-anchor="middle" x="147.875" y="50">nums</text><rect class="list" height="50" width="40" x="275" y="25" /><text dy=".3em" text-anchor="middle" x="295" y="50">1</text><rect class="list" height="50" width="40" x="315" y="25" /><text dy=".3em" text-anchor="middle" x="335" y="50">2</text><rect class="list" height="50" width="40" x="355" y="25" /><text dy=".3em" text-anchor="middle" x="375" y="50">3</text><path class="arrow" d="M 200,50 C 218,50 218,50 237,50 C 256,50 256,50 275,50" fill="none" marker-end="url(#id64)" /><rect class="frame" height="200" opacity="0.25" rx="20" ry="20" width="200" x="25" y="100" /><text class="framelabel" dy=".3em" opacity="0.25" text-anchor="middle" x="125" y="125">append_twice</text><polygon class="name" opacity="0.25" points="78,150 193.75,150 200,175 193.75,200 78,200" /><text dy=".3em" opacity="0.25" text-anchor="middle" x="135.875" y="175">a_list</text><path class="arrow" d="M 200,175 C 236,175 236,148 237,112 C 238,76 238,50 275,50" fill="none" marker-end="url(#id64)" opacity="0.25" /><polygon class="name" opacity="0.25" points="114,225 193.75,225 200,250 193.75,275 114,275" /><text dy=".3em" opacity="0.25" text-anchor="middle" x="153.875" y="250">val</text><circle class="int value" cx="300" cy="250" r="25" /><text dy=".3em" text-anchor="middle" x="300" y="250">7</text><path class="arrow" d="M 200,250 C 218,250 218,250 237,250 C 256,250 256,250 275,250" fill="none" marker-end="url(#id64)" opacity="0.25" /><rect class="list" height="50" width="40" x="275" y="25" /><text dy=".3em" text-anchor="middle" x="295" y="50">1</text><rect class="list" height="50" width="40" x="315" y="25" /><text dy=".3em" text-anchor="middle" x="335" y="50">2</text><rect class="list" height="50" width="40" x="355" y="25" /><text dy=".3em" text-anchor="middle" x="375" y="50">3</text><rect class="list" height="50" width="40" x="395" y="25" /><text dy=".3em" text-anchor="middle" x="415" y="50">7</text><rect class="list" height="50" width="40" x="275" y="25" /><text dy=".3em" text-anchor="middle" x="295" y="50">1</text><rect class="list" height="50" width="40" x="315" y="25" /><text dy=".3em" text-anchor="middle" x="335" y="50">2</text><rect class="list" height="50" width="40" x="355" y="25" /><text dy=".3em" text-anchor="middle" x="375" y="50">3</text><rect class="list" height="50" width="40" x="395" y="25" /><text dy=".3em" text-anchor="middle" x="415" y="50">7</text><rect class="list" height="50" width="40" x="435" y="25" /><text dy=".3em" text-anchor="middle" x="455" y="50">7</text></svg>
     </div>
     </div>
     <div class="overlay incremental">
     <pre class="python tophalf" select="4">
-        def augment_twice(a_list, val):
+        def append_twice(a_list, val):
             a_list.append(val)
             a_list.append(val)
             return
 
         nums = [1, 2, 3]
-        augment_twice(nums, 7)
+        append_twice(nums, 7)
         print(nums)         # [1, 2, 3, 7, 7]
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
@@ -2105,13 +2141,13 @@ nums = [ 10*x for x in nums ]
     </div>
     <div class="overlay incremental">
     <pre class="python tophalf" select="8">
-        def augment_twice(a_list, val):
+        def append_twice(a_list, val):
             a_list.append(val)
             a_list.append(val)
             return
 
         nums = [1, 2, 3]
-        augment_twice(nums, 7)
+        append_twice(nums, 7)
         print(nums)         # [1, 2, 3, 7, 7]
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
@@ -2123,16 +2159,56 @@ nums = [ 10*x for x in nums ]
     <!--[[[end]]]-->
 </div>
 
+<div class="text"><!-- {{{ -->
+
+<p>Let's try to write a useful function.  We want to append a value twice to a
+list.  We'll write it three different ways.  Two of them work (but
+differently), and one is completely useless.  It will be instructive to
+understand why the three versions behave differently.</p>
+
+<p>Here is our first version of append_twice:</p>
+
+<code lang="py">
+def append_twice(a_list, val):
+    a_list.append(val)
+    a_list.append(val)
+</code>
+
+<p>This is very simple, and does exactly what it claims to do.</p>
+
+<p>We call it like this:</p>
+
+<code lang="py">
+nums = [1, 2, 3]
+append_twice(nums, 7)
+print(nums)         # [1, 2, 3, 7, 7]
+</code>
+
+<p>When we call append_twice, we pass it nums.  This assigns nums to the
+parameter a_list, so now there are two names for the list, nums in the caller,
+and a_list in the append_twice function.  Then we append val onto the list
+twice.  These appends work on a_list, which is the same list as nums in the
+caller, so we are directly modifying the caller's list.</p>
+
+<p>When the function ends, the frame is destroyed, which removes the local name
+a_list.  Since that wasn't the only reference to the list, removing the name
+a_list doesn't reclaim the list itself.</p>
+
+<p>Back in the caller, we print the nums list, and see that it has indeed
+been modified.</p>
+
+</div><!-- }}} -->
+
 <div class="slide">
     <h1></h1>
     <!--[[[cog
     code = '''\
-        def augment_twice_bad(a_list, val):
+        def append_twice_bad(a_list, val):
             a_list = a_list + [val, val]
             return
 
         nums = [1, 2, 3]
-        augment_twice_bad(nums, 7)
+        append_twice_bad(nums, 7)
         print(nums)         # [1, 2, 3]
         '''
 
@@ -2143,7 +2219,7 @@ nums = [ 10*x for x in nums ]
         l_nums = fig.list(texts=["1", "2", "3"], pos=fig.val_for_name(n_nums))
         fig.reference(n_nums, l_nums[0])
         
-        fig.frame(pos=fig.next_frame(), size=(230,200), text="augment_twice_bad", rise=2, set=6, fade=1)
+        fig.frame(pos=fig.next_frame(), size=(230,200), text="append_twice_bad", rise=2, set=6, fade=1)
         n_a_list = auto_name(fig, "a_list", rise=2, set=5)
         fig.reference(n_a_list, l_nums[0])
         n_val = auto_name(fig, "val", rise=2, set=6, fade=1)
@@ -2164,23 +2240,23 @@ nums = [ 10*x for x in nums ]
     <div class="overlay_container">
     <div class="overlay">
     <pre class="python tophalf">
-        def augment_twice_bad(a_list, val):
+        def append_twice_bad(a_list, val):
             a_list = a_list + [val, val]
             return
 
         nums = [1, 2, 3]
-        augment_twice_bad(nums, 7)
+        append_twice_bad(nums, 7)
         print(nums)         # [1, 2, 3]
         </pre>
     </div>
     <div class="overlay incremental">
     <pre class="python tophalf" select="5">
-        def augment_twice_bad(a_list, val):
+        def append_twice_bad(a_list, val):
             a_list = a_list + [val, val]
             return
 
         nums = [1, 2, 3]
-        augment_twice_bad(nums, 7)
+        append_twice_bad(nums, 7)
         print(nums)         # [1, 2, 3]
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
@@ -2189,82 +2265,82 @@ nums = [ 10*x for x in nums ]
     </div>
     <div class="overlay incremental">
     <pre class="python tophalf" select="6,1">
-        def augment_twice_bad(a_list, val):
+        def append_twice_bad(a_list, val):
             a_list = a_list + [val, val]
             return
 
         nums = [1, 2, 3]
-        augment_twice_bad(nums, 7)
+        append_twice_bad(nums, 7)
         print(nums)         # [1, 2, 3]
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
-    <svg baseProfile="full" height="325" version="1.1" width="550" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id68" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="132,25 223.75,25 230,50 223.75,75 132,75" /><text dy=".3em" text-anchor="middle" x="177.875" y="50">nums</text><rect class="list" height="50" width="40" x="305" y="25" /><text dy=".3em" text-anchor="middle" x="325" y="50">1</text><rect class="list" height="50" width="40" x="345" y="25" /><text dy=".3em" text-anchor="middle" x="365" y="50">2</text><rect class="list" height="50" width="40" x="385" y="25" /><text dy=".3em" text-anchor="middle" x="405" y="50">3</text><path class="arrow" d="M 230,50 C 248,50 248,50 267,50 C 286,50 286,50 305,50" fill="none" marker-end="url(#id68)" /><rect class="frame" height="200" rx="20" ry="20" width="230" x="25" y="100" /><text class="framelabel" dy=".3em" opacity="1" text-anchor="middle" x="140" y="125">augment_twice_bad</text><polygon class="name" points="108,150 223.75,150 230,175 223.75,200 108,200" /><text dy=".3em" text-anchor="middle" x="165.875" y="175">a_list</text><path class="arrow" d="M 230,175 C 266,175 266,148 267,112 C 268,76 268,50 305,50" fill="none" marker-end="url(#id68)" /><polygon class="name" points="144,225 223.75,225 230,250 223.75,275 144,275" /><text dy=".3em" text-anchor="middle" x="183.875" y="250">val</text><circle class="int value" cx="330" cy="250" r="25" /><text dy=".3em" text-anchor="middle" x="330" y="250">7</text><path class="arrow" d="M 230,250 C 248,250 248,250 267,250 C 286,250 286,250 305,250" fill="none" marker-end="url(#id68)" /></svg>
+    <svg baseProfile="full" height="325" version="1.1" width="550" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id68" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="132,25 223.75,25 230,50 223.75,75 132,75" /><text dy=".3em" text-anchor="middle" x="177.875" y="50">nums</text><rect class="list" height="50" width="40" x="305" y="25" /><text dy=".3em" text-anchor="middle" x="325" y="50">1</text><rect class="list" height="50" width="40" x="345" y="25" /><text dy=".3em" text-anchor="middle" x="365" y="50">2</text><rect class="list" height="50" width="40" x="385" y="25" /><text dy=".3em" text-anchor="middle" x="405" y="50">3</text><path class="arrow" d="M 230,50 C 248,50 248,50 267,50 C 286,50 286,50 305,50" fill="none" marker-end="url(#id68)" /><rect class="frame" height="200" rx="20" ry="20" width="230" x="25" y="100" /><text class="framelabel" dy=".3em" opacity="1" text-anchor="middle" x="140" y="125">append_twice_bad</text><polygon class="name" points="108,150 223.75,150 230,175 223.75,200 108,200" /><text dy=".3em" text-anchor="middle" x="165.875" y="175">a_list</text><path class="arrow" d="M 230,175 C 266,175 266,148 267,112 C 268,76 268,50 305,50" fill="none" marker-end="url(#id68)" /><polygon class="name" points="144,225 223.75,225 230,250 223.75,275 144,275" /><text dy=".3em" text-anchor="middle" x="183.875" y="250">val</text><circle class="int value" cx="330" cy="250" r="25" /><text dy=".3em" text-anchor="middle" x="330" y="250">7</text><path class="arrow" d="M 230,250 C 248,250 248,250 267,250 C 286,250 286,250 305,250" fill="none" marker-end="url(#id68)" /></svg>
     </div>
     </div>
     <div class="overlay incremental">
     <pre class="python tophalf" select="1">
-        def augment_twice_bad(a_list, val):
+        def append_twice_bad(a_list, val):
             a_list = a_list + [val, val]
             return
 
         nums = [1, 2, 3]
-        augment_twice_bad(nums, 7)
+        append_twice_bad(nums, 7)
         print(nums)         # [1, 2, 3]
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
-    <svg baseProfile="full" height="325" version="1.1" width="550" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id69" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="132,25 223.75,25 230,50 223.75,75 132,75" /><text dy=".3em" text-anchor="middle" x="177.875" y="50">nums</text><rect class="list" height="50" width="40" x="305" y="25" /><text dy=".3em" text-anchor="middle" x="325" y="50">1</text><rect class="list" height="50" width="40" x="345" y="25" /><text dy=".3em" text-anchor="middle" x="365" y="50">2</text><rect class="list" height="50" width="40" x="385" y="25" /><text dy=".3em" text-anchor="middle" x="405" y="50">3</text><path class="arrow" d="M 230,50 C 248,50 248,50 267,50 C 286,50 286,50 305,50" fill="none" marker-end="url(#id69)" /><rect class="frame" height="200" rx="20" ry="20" width="230" x="25" y="100" /><text class="framelabel" dy=".3em" opacity="1" text-anchor="middle" x="140" y="125">augment_twice_bad</text><polygon class="name" points="108,150 223.75,150 230,175 223.75,200 108,200" /><text dy=".3em" text-anchor="middle" x="165.875" y="175">a_list</text><path class="arrow" d="M 230,175 C 266,175 266,148 267,112 C 268,76 268,50 305,50" fill="none" marker-end="url(#id69)" /><polygon class="name" points="144,225 223.75,225 230,250 223.75,275 144,275" /><text dy=".3em" text-anchor="middle" x="183.875" y="250">val</text><circle class="int value" cx="330" cy="250" r="25" /><text dy=".3em" text-anchor="middle" x="330" y="250">7</text><path class="arrow" d="M 230,250 C 248,250 248,250 267,250 C 286,250 286,250 305,250" fill="none" marker-end="url(#id69)" /></svg>
+    <svg baseProfile="full" height="325" version="1.1" width="550" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id69" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="132,25 223.75,25 230,50 223.75,75 132,75" /><text dy=".3em" text-anchor="middle" x="177.875" y="50">nums</text><rect class="list" height="50" width="40" x="305" y="25" /><text dy=".3em" text-anchor="middle" x="325" y="50">1</text><rect class="list" height="50" width="40" x="345" y="25" /><text dy=".3em" text-anchor="middle" x="365" y="50">2</text><rect class="list" height="50" width="40" x="385" y="25" /><text dy=".3em" text-anchor="middle" x="405" y="50">3</text><path class="arrow" d="M 230,50 C 248,50 248,50 267,50 C 286,50 286,50 305,50" fill="none" marker-end="url(#id69)" /><rect class="frame" height="200" rx="20" ry="20" width="230" x="25" y="100" /><text class="framelabel" dy=".3em" opacity="1" text-anchor="middle" x="140" y="125">append_twice_bad</text><polygon class="name" points="108,150 223.75,150 230,175 223.75,200 108,200" /><text dy=".3em" text-anchor="middle" x="165.875" y="175">a_list</text><path class="arrow" d="M 230,175 C 266,175 266,148 267,112 C 268,76 268,50 305,50" fill="none" marker-end="url(#id69)" /><polygon class="name" points="144,225 223.75,225 230,250 223.75,275 144,275" /><text dy=".3em" text-anchor="middle" x="183.875" y="250">val</text><circle class="int value" cx="330" cy="250" r="25" /><text dy=".3em" text-anchor="middle" x="330" y="250">7</text><path class="arrow" d="M 230,250 C 248,250 248,250 267,250 C 286,250 286,250 305,250" fill="none" marker-end="url(#id69)" /></svg>
     </div>
     </div>
     <div class="overlay incremental">
     <pre class="python tophalf" select="2">
-        def augment_twice_bad(a_list, val):
+        def append_twice_bad(a_list, val):
             a_list = a_list + [val, val]
             return
 
         nums = [1, 2, 3]
-        augment_twice_bad(nums, 7)
+        append_twice_bad(nums, 7)
         print(nums)         # [1, 2, 3]
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
-    <svg baseProfile="full" height="325" version="1.1" width="550" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id70" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="132,25 223.75,25 230,50 223.75,75 132,75" /><text dy=".3em" text-anchor="middle" x="177.875" y="50">nums</text><rect class="list" height="50" width="40" x="305" y="25" /><text dy=".3em" text-anchor="middle" x="325" y="50">1</text><rect class="list" height="50" width="40" x="345" y="25" /><text dy=".3em" text-anchor="middle" x="365" y="50">2</text><rect class="list" height="50" width="40" x="385" y="25" /><text dy=".3em" text-anchor="middle" x="405" y="50">3</text><path class="arrow" d="M 230,50 C 248,50 248,50 267,50 C 286,50 286,50 305,50" fill="none" marker-end="url(#id70)" /><rect class="frame" height="200" rx="20" ry="20" width="230" x="25" y="100" /><text class="framelabel" dy=".3em" opacity="1" text-anchor="middle" x="140" y="125">augment_twice_bad</text><polygon class="name" points="108,150 223.75,150 230,175 223.75,200 108,200" /><text dy=".3em" text-anchor="middle" x="165.875" y="175">a_list</text><path class="arrow" d="M 230,175 C 266,175 266,148 267,112 C 268,76 268,50 305,50" fill="none" marker-end="url(#id70)" /><polygon class="name" points="144,225 223.75,225 230,250 223.75,275 144,275" /><text dy=".3em" text-anchor="middle" x="183.875" y="250">val</text><circle class="int value" cx="330" cy="250" r="25" /><text dy=".3em" text-anchor="middle" x="330" y="250">7</text><path class="arrow" d="M 230,250 C 248,250 248,250 267,250 C 286,250 286,250 305,250" fill="none" marker-end="url(#id70)" /><rect class="list" height="50" width="40" x="305" y="150" /><text dy=".3em" text-anchor="middle" x="325" y="175">1</text><rect class="list" height="50" width="40" x="345" y="150" /><text dy=".3em" text-anchor="middle" x="365" y="175">2</text><rect class="list" height="50" width="40" x="385" y="150" /><text dy=".3em" text-anchor="middle" x="405" y="175">3</text><rect class="list" height="50" width="40" x="425" y="150" /><text dy=".3em" text-anchor="middle" x="445" y="175">7</text><rect class="list" height="50" width="40" x="465" y="150" /><text dy=".3em" text-anchor="middle" x="485" y="175">7</text><rect class="highlight" height="60" rx="5" ry="5" width="210" x="300" y="145" /></svg>
+    <svg baseProfile="full" height="325" version="1.1" width="550" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id70" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="132,25 223.75,25 230,50 223.75,75 132,75" /><text dy=".3em" text-anchor="middle" x="177.875" y="50">nums</text><rect class="list" height="50" width="40" x="305" y="25" /><text dy=".3em" text-anchor="middle" x="325" y="50">1</text><rect class="list" height="50" width="40" x="345" y="25" /><text dy=".3em" text-anchor="middle" x="365" y="50">2</text><rect class="list" height="50" width="40" x="385" y="25" /><text dy=".3em" text-anchor="middle" x="405" y="50">3</text><path class="arrow" d="M 230,50 C 248,50 248,50 267,50 C 286,50 286,50 305,50" fill="none" marker-end="url(#id70)" /><rect class="frame" height="200" rx="20" ry="20" width="230" x="25" y="100" /><text class="framelabel" dy=".3em" opacity="1" text-anchor="middle" x="140" y="125">append_twice_bad</text><polygon class="name" points="108,150 223.75,150 230,175 223.75,200 108,200" /><text dy=".3em" text-anchor="middle" x="165.875" y="175">a_list</text><path class="arrow" d="M 230,175 C 266,175 266,148 267,112 C 268,76 268,50 305,50" fill="none" marker-end="url(#id70)" /><polygon class="name" points="144,225 223.75,225 230,250 223.75,275 144,275" /><text dy=".3em" text-anchor="middle" x="183.875" y="250">val</text><circle class="int value" cx="330" cy="250" r="25" /><text dy=".3em" text-anchor="middle" x="330" y="250">7</text><path class="arrow" d="M 230,250 C 248,250 248,250 267,250 C 286,250 286,250 305,250" fill="none" marker-end="url(#id70)" /><rect class="list" height="50" width="40" x="305" y="150" /><text dy=".3em" text-anchor="middle" x="325" y="175">1</text><rect class="list" height="50" width="40" x="345" y="150" /><text dy=".3em" text-anchor="middle" x="365" y="175">2</text><rect class="list" height="50" width="40" x="385" y="150" /><text dy=".3em" text-anchor="middle" x="405" y="175">3</text><rect class="list" height="50" width="40" x="425" y="150" /><text dy=".3em" text-anchor="middle" x="445" y="175">7</text><rect class="list" height="50" width="40" x="465" y="150" /><text dy=".3em" text-anchor="middle" x="485" y="175">7</text><rect class="highlight" height="60" rx="5" ry="5" width="210" x="300" y="145" /></svg>
     </div>
     </div>
     <div class="overlay incremental">
     <pre class="python tophalf" select="2">
-        def augment_twice_bad(a_list, val):
+        def append_twice_bad(a_list, val):
             a_list = a_list + [val, val]
             return
 
         nums = [1, 2, 3]
-        augment_twice_bad(nums, 7)
+        append_twice_bad(nums, 7)
         print(nums)         # [1, 2, 3]
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
-    <svg baseProfile="full" height="325" version="1.1" width="550" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id71" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="132,25 223.75,25 230,50 223.75,75 132,75" /><text dy=".3em" text-anchor="middle" x="177.875" y="50">nums</text><rect class="list" height="50" width="40" x="305" y="25" /><text dy=".3em" text-anchor="middle" x="325" y="50">1</text><rect class="list" height="50" width="40" x="345" y="25" /><text dy=".3em" text-anchor="middle" x="365" y="50">2</text><rect class="list" height="50" width="40" x="385" y="25" /><text dy=".3em" text-anchor="middle" x="405" y="50">3</text><path class="arrow" d="M 230,50 C 248,50 248,50 267,50 C 286,50 286,50 305,50" fill="none" marker-end="url(#id71)" /><rect class="frame" height="200" rx="20" ry="20" width="230" x="25" y="100" /><text class="framelabel" dy=".3em" opacity="1" text-anchor="middle" x="140" y="125">augment_twice_bad</text><polygon class="name" points="144,225 223.75,225 230,250 223.75,275 144,275" /><text dy=".3em" text-anchor="middle" x="183.875" y="250">val</text><circle class="int value" cx="330" cy="250" r="25" /><text dy=".3em" text-anchor="middle" x="330" y="250">7</text><path class="arrow" d="M 230,250 C 248,250 248,250 267,250 C 286,250 286,250 305,250" fill="none" marker-end="url(#id71)" /><polygon class="name" points="108,150 223.75,150 230,175 223.75,200 108,200" /><text dy=".3em" text-anchor="middle" x="165.875" y="175">a_list</text><rect class="list" height="50" width="40" x="305" y="150" /><text dy=".3em" text-anchor="middle" x="325" y="175">1</text><rect class="list" height="50" width="40" x="345" y="150" /><text dy=".3em" text-anchor="middle" x="365" y="175">2</text><rect class="list" height="50" width="40" x="385" y="150" /><text dy=".3em" text-anchor="middle" x="405" y="175">3</text><rect class="list" height="50" width="40" x="425" y="150" /><text dy=".3em" text-anchor="middle" x="445" y="175">7</text><rect class="list" height="50" width="40" x="465" y="150" /><text dy=".3em" text-anchor="middle" x="485" y="175">7</text><path class="arrow" d="M 230,175 C 248,175 248,175 267,175 C 286,175 286,175 305,175" fill="none" marker-end="url(#id71)" /><rect class="highlight" height="60" rx="5" ry="5" width="132" x="103" y="145" /></svg>
+    <svg baseProfile="full" height="325" version="1.1" width="550" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id71" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="132,25 223.75,25 230,50 223.75,75 132,75" /><text dy=".3em" text-anchor="middle" x="177.875" y="50">nums</text><rect class="list" height="50" width="40" x="305" y="25" /><text dy=".3em" text-anchor="middle" x="325" y="50">1</text><rect class="list" height="50" width="40" x="345" y="25" /><text dy=".3em" text-anchor="middle" x="365" y="50">2</text><rect class="list" height="50" width="40" x="385" y="25" /><text dy=".3em" text-anchor="middle" x="405" y="50">3</text><path class="arrow" d="M 230,50 C 248,50 248,50 267,50 C 286,50 286,50 305,50" fill="none" marker-end="url(#id71)" /><rect class="frame" height="200" rx="20" ry="20" width="230" x="25" y="100" /><text class="framelabel" dy=".3em" opacity="1" text-anchor="middle" x="140" y="125">append_twice_bad</text><polygon class="name" points="144,225 223.75,225 230,250 223.75,275 144,275" /><text dy=".3em" text-anchor="middle" x="183.875" y="250">val</text><circle class="int value" cx="330" cy="250" r="25" /><text dy=".3em" text-anchor="middle" x="330" y="250">7</text><path class="arrow" d="M 230,250 C 248,250 248,250 267,250 C 286,250 286,250 305,250" fill="none" marker-end="url(#id71)" /><polygon class="name" points="108,150 223.75,150 230,175 223.75,200 108,200" /><text dy=".3em" text-anchor="middle" x="165.875" y="175">a_list</text><rect class="list" height="50" width="40" x="305" y="150" /><text dy=".3em" text-anchor="middle" x="325" y="175">1</text><rect class="list" height="50" width="40" x="345" y="150" /><text dy=".3em" text-anchor="middle" x="365" y="175">2</text><rect class="list" height="50" width="40" x="385" y="150" /><text dy=".3em" text-anchor="middle" x="405" y="175">3</text><rect class="list" height="50" width="40" x="425" y="150" /><text dy=".3em" text-anchor="middle" x="445" y="175">7</text><rect class="list" height="50" width="40" x="465" y="150" /><text dy=".3em" text-anchor="middle" x="485" y="175">7</text><path class="arrow" d="M 230,175 C 248,175 248,175 267,175 C 286,175 286,175 305,175" fill="none" marker-end="url(#id71)" /><rect class="highlight" height="60" rx="5" ry="5" width="132" x="103" y="145" /></svg>
     </div>
     </div>
     <div class="overlay incremental">
     <pre class="python tophalf" select="3">
-        def augment_twice_bad(a_list, val):
+        def append_twice_bad(a_list, val):
             a_list = a_list + [val, val]
             return
 
         nums = [1, 2, 3]
-        augment_twice_bad(nums, 7)
+        append_twice_bad(nums, 7)
         print(nums)         # [1, 2, 3]
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
-    <svg baseProfile="full" height="325" version="1.1" width="550" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id72" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="132,25 223.75,25 230,50 223.75,75 132,75" /><text dy=".3em" text-anchor="middle" x="177.875" y="50">nums</text><rect class="list" height="50" width="40" x="305" y="25" /><text dy=".3em" text-anchor="middle" x="325" y="50">1</text><rect class="list" height="50" width="40" x="345" y="25" /><text dy=".3em" text-anchor="middle" x="365" y="50">2</text><rect class="list" height="50" width="40" x="385" y="25" /><text dy=".3em" text-anchor="middle" x="405" y="50">3</text><path class="arrow" d="M 230,50 C 248,50 248,50 267,50 C 286,50 286,50 305,50" fill="none" marker-end="url(#id72)" /><rect class="frame" height="200" opacity="0.25" rx="20" ry="20" width="230" x="25" y="100" /><text class="framelabel" dy=".3em" opacity="0.25" text-anchor="middle" x="140" y="125">augment_twice_bad</text><polygon class="name" opacity="0.25" points="144,225 223.75,225 230,250 223.75,275 144,275" /><text dy=".3em" opacity="0.25" text-anchor="middle" x="183.875" y="250">val</text><circle class="int value" cx="330" cy="250" r="25" /><text dy=".3em" text-anchor="middle" x="330" y="250">7</text><path class="arrow" d="M 230,250 C 248,250 248,250 267,250 C 286,250 286,250 305,250" fill="none" marker-end="url(#id72)" opacity="0.25" /><polygon class="name" opacity="0.25" points="108,150 223.75,150 230,175 223.75,200 108,200" /><text dy=".3em" opacity="0.25" text-anchor="middle" x="165.875" y="175">a_list</text><rect class="list" height="50" width="40" x="305" y="150" /><text dy=".3em" text-anchor="middle" x="325" y="175">1</text><rect class="list" height="50" width="40" x="345" y="150" /><text dy=".3em" text-anchor="middle" x="365" y="175">2</text><rect class="list" height="50" width="40" x="385" y="150" /><text dy=".3em" text-anchor="middle" x="405" y="175">3</text><rect class="list" height="50" width="40" x="425" y="150" /><text dy=".3em" text-anchor="middle" x="445" y="175">7</text><rect class="list" height="50" width="40" x="465" y="150" /><text dy=".3em" text-anchor="middle" x="485" y="175">7</text><path class="arrow" d="M 230,175 C 248,175 248,175 267,175 C 286,175 286,175 305,175" fill="none" marker-end="url(#id72)" opacity="0.25" /></svg>
+    <svg baseProfile="full" height="325" version="1.1" width="550" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id72" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="132,25 223.75,25 230,50 223.75,75 132,75" /><text dy=".3em" text-anchor="middle" x="177.875" y="50">nums</text><rect class="list" height="50" width="40" x="305" y="25" /><text dy=".3em" text-anchor="middle" x="325" y="50">1</text><rect class="list" height="50" width="40" x="345" y="25" /><text dy=".3em" text-anchor="middle" x="365" y="50">2</text><rect class="list" height="50" width="40" x="385" y="25" /><text dy=".3em" text-anchor="middle" x="405" y="50">3</text><path class="arrow" d="M 230,50 C 248,50 248,50 267,50 C 286,50 286,50 305,50" fill="none" marker-end="url(#id72)" /><rect class="frame" height="200" opacity="0.25" rx="20" ry="20" width="230" x="25" y="100" /><text class="framelabel" dy=".3em" opacity="0.25" text-anchor="middle" x="140" y="125">append_twice_bad</text><polygon class="name" opacity="0.25" points="144,225 223.75,225 230,250 223.75,275 144,275" /><text dy=".3em" opacity="0.25" text-anchor="middle" x="183.875" y="250">val</text><circle class="int value" cx="330" cy="250" r="25" /><text dy=".3em" text-anchor="middle" x="330" y="250">7</text><path class="arrow" d="M 230,250 C 248,250 248,250 267,250 C 286,250 286,250 305,250" fill="none" marker-end="url(#id72)" opacity="0.25" /><polygon class="name" opacity="0.25" points="108,150 223.75,150 230,175 223.75,200 108,200" /><text dy=".3em" opacity="0.25" text-anchor="middle" x="165.875" y="175">a_list</text><rect class="list" height="50" width="40" x="305" y="150" /><text dy=".3em" text-anchor="middle" x="325" y="175">1</text><rect class="list" height="50" width="40" x="345" y="150" /><text dy=".3em" text-anchor="middle" x="365" y="175">2</text><rect class="list" height="50" width="40" x="385" y="150" /><text dy=".3em" text-anchor="middle" x="405" y="175">3</text><rect class="list" height="50" width="40" x="425" y="150" /><text dy=".3em" text-anchor="middle" x="445" y="175">7</text><rect class="list" height="50" width="40" x="465" y="150" /><text dy=".3em" text-anchor="middle" x="485" y="175">7</text><path class="arrow" d="M 230,175 C 248,175 248,175 267,175 C 286,175 286,175 305,175" fill="none" marker-end="url(#id72)" opacity="0.25" /></svg>
     </div>
     </div>
     <div class="overlay incremental">
     <pre class="python tophalf" select="3">
-        def augment_twice_bad(a_list, val):
+        def append_twice_bad(a_list, val):
             a_list = a_list + [val, val]
             return
 
         nums = [1, 2, 3]
-        augment_twice_bad(nums, 7)
+        append_twice_bad(nums, 7)
         print(nums)         # [1, 2, 3]
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
@@ -2273,12 +2349,12 @@ nums = [ 10*x for x in nums ]
     </div>
     <div class="overlay incremental">
     <pre class="python tophalf" select="7">
-        def augment_twice_bad(a_list, val):
+        def append_twice_bad(a_list, val):
             a_list = a_list + [val, val]
             return
 
         nums = [1, 2, 3]
-        augment_twice_bad(nums, 7)
+        append_twice_bad(nums, 7)
         print(nums)         # [1, 2, 3]
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
@@ -2290,16 +2366,49 @@ nums = [ 10*x for x in nums ]
     <!--[[[end]]]-->
 </div>
 
+<div class="text"><!-- {{{ -->
+
+<p>Now let's try a different implementation:</p>
+
+<code lang="py">
+def append_twice_bad(a_list, val):
+    a_list = a_list + [val, val]
+    return
+
+nums = [1, 2, 3]
+append_twice_bad(nums, 7)
+print(nums)         # [1, 2, 3]
+</code>
+
+<p>Here we take another approach: inside the function, we extend the list by
+adding two values to the original list.  But this function doesn't work at all.
+As before, we pass nums into the function, so we have both a_list and nums
+referring to the original list.  But then we create an entirely new list, and
+assign it to a_list.</p>
+
+<p>When the function ends, the frame is destroyed, and the name a_list along
+with it.  The new augemented list was only referred to by a_list, so it is also
+reclaimed.  All of our work is lost!</p>
+
+<p>Back in the caller, we see no effect at all, because the original list was
+never modified. The impulse here was good: functions that modify values passed
+into them are good ways to get unexpected aliasing bugs.  Making new lists can
+avoid these problems. Luckily, there's an easy thing we can do to make this
+function useful.</p>
+
+</div><!-- }}} -->
+
+
 <div class="slide">
     <h1></h1>
     <!--[[[cog
     code = '''\
-        def augment_twice_good(a_list, val):
+        def append_twice_good(a_list, val):
             a_list = a_list + [val, val]
             return a_list
 
         nums = [1, 2, 3]
-        nums = augment_twice_good(nums, 7)
+        nums = append_twice_good(nums, 7)
         print(nums)         # [1, 2, 3, 7, 7]
         '''
 
@@ -2310,7 +2419,7 @@ nums = [ 10*x for x in nums ]
         l_nums = fig.list(texts=["1", "2", "3"], pos=fig.val_for_name(n_nums), set=8, fade=1)
         fig.reference(n_nums, l_nums[0])
         
-        the_frame = fig.frame(pos=fig.next_frame(), size=(230,200), text="augment_twice_good", rise=2, set=7, fade=1)
+        the_frame = fig.frame(pos=fig.next_frame(), size=(230,200), text="append_twice_good", rise=2, set=7, fade=1)
         n_a_list = auto_name(fig, "a_list", rise=2, set=5)
         fig.reference(n_a_list, l_nums[0])
         n_val = auto_name(fig, "val", rise=2, set=6, fade=1)
@@ -2335,23 +2444,23 @@ nums = [ 10*x for x in nums ]
     <div class="overlay_container">
     <div class="overlay">
     <pre class="python tophalf">
-        def augment_twice_good(a_list, val):
+        def append_twice_good(a_list, val):
             a_list = a_list + [val, val]
             return a_list
 
         nums = [1, 2, 3]
-        nums = augment_twice_good(nums, 7)
+        nums = append_twice_good(nums, 7)
         print(nums)         # [1, 2, 3, 7, 7]
         </pre>
     </div>
     <div class="overlay incremental">
     <pre class="python tophalf" select="5">
-        def augment_twice_good(a_list, val):
+        def append_twice_good(a_list, val):
             a_list = a_list + [val, val]
             return a_list
 
         nums = [1, 2, 3]
-        nums = augment_twice_good(nums, 7)
+        nums = append_twice_good(nums, 7)
         print(nums)         # [1, 2, 3, 7, 7]
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
@@ -2360,96 +2469,96 @@ nums = [ 10*x for x in nums ]
     </div>
     <div class="overlay incremental">
     <pre class="python tophalf" select="6,1">
-        def augment_twice_good(a_list, val):
+        def append_twice_good(a_list, val):
             a_list = a_list + [val, val]
             return a_list
 
         nums = [1, 2, 3]
-        nums = augment_twice_good(nums, 7)
+        nums = append_twice_good(nums, 7)
         print(nums)         # [1, 2, 3, 7, 7]
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
-    <svg baseProfile="full" height="325" version="1.1" width="550" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id76" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="132,25 223.75,25 230,50 223.75,75 132,75" /><text dy=".3em" text-anchor="middle" x="177.875" y="50">nums</text><rect class="list" height="50" width="40" x="305" y="25" /><text dy=".3em" text-anchor="middle" x="325" y="50">1</text><rect class="list" height="50" width="40" x="345" y="25" /><text dy=".3em" text-anchor="middle" x="365" y="50">2</text><rect class="list" height="50" width="40" x="385" y="25" /><text dy=".3em" text-anchor="middle" x="405" y="50">3</text><path class="arrow" d="M 230,50 C 248,50 248,50 267,50 C 286,50 286,50 305,50" fill="none" marker-end="url(#id76)" /><rect class="frame" height="200" rx="20" ry="20" width="230" x="25" y="100" /><text class="framelabel" dy=".3em" opacity="1" text-anchor="middle" x="140" y="125">augment_twice_good</text><polygon class="name" points="108,150 223.75,150 230,175 223.75,200 108,200" /><text dy=".3em" text-anchor="middle" x="165.875" y="175">a_list</text><path class="arrow" d="M 230,175 C 266,175 266,148 267,112 C 268,76 268,50 305,50" fill="none" marker-end="url(#id76)" /><polygon class="name" points="144,225 223.75,225 230,250 223.75,275 144,275" /><text dy=".3em" text-anchor="middle" x="183.875" y="250">val</text><circle class="int value" cx="330" cy="250" r="25" /><text dy=".3em" text-anchor="middle" x="330" y="250">7</text><path class="arrow" d="M 230,250 C 248,250 248,250 267,250 C 286,250 286,250 305,250" fill="none" marker-end="url(#id76)" /></svg>
+    <svg baseProfile="full" height="325" version="1.1" width="550" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id76" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="132,25 223.75,25 230,50 223.75,75 132,75" /><text dy=".3em" text-anchor="middle" x="177.875" y="50">nums</text><rect class="list" height="50" width="40" x="305" y="25" /><text dy=".3em" text-anchor="middle" x="325" y="50">1</text><rect class="list" height="50" width="40" x="345" y="25" /><text dy=".3em" text-anchor="middle" x="365" y="50">2</text><rect class="list" height="50" width="40" x="385" y="25" /><text dy=".3em" text-anchor="middle" x="405" y="50">3</text><path class="arrow" d="M 230,50 C 248,50 248,50 267,50 C 286,50 286,50 305,50" fill="none" marker-end="url(#id76)" /><rect class="frame" height="200" rx="20" ry="20" width="230" x="25" y="100" /><text class="framelabel" dy=".3em" opacity="1" text-anchor="middle" x="140" y="125">append_twice_good</text><polygon class="name" points="108,150 223.75,150 230,175 223.75,200 108,200" /><text dy=".3em" text-anchor="middle" x="165.875" y="175">a_list</text><path class="arrow" d="M 230,175 C 266,175 266,148 267,112 C 268,76 268,50 305,50" fill="none" marker-end="url(#id76)" /><polygon class="name" points="144,225 223.75,225 230,250 223.75,275 144,275" /><text dy=".3em" text-anchor="middle" x="183.875" y="250">val</text><circle class="int value" cx="330" cy="250" r="25" /><text dy=".3em" text-anchor="middle" x="330" y="250">7</text><path class="arrow" d="M 230,250 C 248,250 248,250 267,250 C 286,250 286,250 305,250" fill="none" marker-end="url(#id76)" /></svg>
     </div>
     </div>
     <div class="overlay incremental">
     <pre class="python tophalf" select="1">
-        def augment_twice_good(a_list, val):
+        def append_twice_good(a_list, val):
             a_list = a_list + [val, val]
             return a_list
 
         nums = [1, 2, 3]
-        nums = augment_twice_good(nums, 7)
+        nums = append_twice_good(nums, 7)
         print(nums)         # [1, 2, 3, 7, 7]
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
-    <svg baseProfile="full" height="325" version="1.1" width="550" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id77" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="132,25 223.75,25 230,50 223.75,75 132,75" /><text dy=".3em" text-anchor="middle" x="177.875" y="50">nums</text><rect class="list" height="50" width="40" x="305" y="25" /><text dy=".3em" text-anchor="middle" x="325" y="50">1</text><rect class="list" height="50" width="40" x="345" y="25" /><text dy=".3em" text-anchor="middle" x="365" y="50">2</text><rect class="list" height="50" width="40" x="385" y="25" /><text dy=".3em" text-anchor="middle" x="405" y="50">3</text><path class="arrow" d="M 230,50 C 248,50 248,50 267,50 C 286,50 286,50 305,50" fill="none" marker-end="url(#id77)" /><rect class="frame" height="200" rx="20" ry="20" width="230" x="25" y="100" /><text class="framelabel" dy=".3em" opacity="1" text-anchor="middle" x="140" y="125">augment_twice_good</text><polygon class="name" points="108,150 223.75,150 230,175 223.75,200 108,200" /><text dy=".3em" text-anchor="middle" x="165.875" y="175">a_list</text><path class="arrow" d="M 230,175 C 266,175 266,148 267,112 C 268,76 268,50 305,50" fill="none" marker-end="url(#id77)" /><polygon class="name" points="144,225 223.75,225 230,250 223.75,275 144,275" /><text dy=".3em" text-anchor="middle" x="183.875" y="250">val</text><circle class="int value" cx="330" cy="250" r="25" /><text dy=".3em" text-anchor="middle" x="330" y="250">7</text><path class="arrow" d="M 230,250 C 248,250 248,250 267,250 C 286,250 286,250 305,250" fill="none" marker-end="url(#id77)" /></svg>
+    <svg baseProfile="full" height="325" version="1.1" width="550" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id77" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="132,25 223.75,25 230,50 223.75,75 132,75" /><text dy=".3em" text-anchor="middle" x="177.875" y="50">nums</text><rect class="list" height="50" width="40" x="305" y="25" /><text dy=".3em" text-anchor="middle" x="325" y="50">1</text><rect class="list" height="50" width="40" x="345" y="25" /><text dy=".3em" text-anchor="middle" x="365" y="50">2</text><rect class="list" height="50" width="40" x="385" y="25" /><text dy=".3em" text-anchor="middle" x="405" y="50">3</text><path class="arrow" d="M 230,50 C 248,50 248,50 267,50 C 286,50 286,50 305,50" fill="none" marker-end="url(#id77)" /><rect class="frame" height="200" rx="20" ry="20" width="230" x="25" y="100" /><text class="framelabel" dy=".3em" opacity="1" text-anchor="middle" x="140" y="125">append_twice_good</text><polygon class="name" points="108,150 223.75,150 230,175 223.75,200 108,200" /><text dy=".3em" text-anchor="middle" x="165.875" y="175">a_list</text><path class="arrow" d="M 230,175 C 266,175 266,148 267,112 C 268,76 268,50 305,50" fill="none" marker-end="url(#id77)" /><polygon class="name" points="144,225 223.75,225 230,250 223.75,275 144,275" /><text dy=".3em" text-anchor="middle" x="183.875" y="250">val</text><circle class="int value" cx="330" cy="250" r="25" /><text dy=".3em" text-anchor="middle" x="330" y="250">7</text><path class="arrow" d="M 230,250 C 248,250 248,250 267,250 C 286,250 286,250 305,250" fill="none" marker-end="url(#id77)" /></svg>
     </div>
     </div>
     <div class="overlay incremental">
     <pre class="python tophalf" select="2">
-        def augment_twice_good(a_list, val):
+        def append_twice_good(a_list, val):
             a_list = a_list + [val, val]
             return a_list
 
         nums = [1, 2, 3]
-        nums = augment_twice_good(nums, 7)
+        nums = append_twice_good(nums, 7)
         print(nums)         # [1, 2, 3, 7, 7]
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
-    <svg baseProfile="full" height="325" version="1.1" width="550" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id78" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="132,25 223.75,25 230,50 223.75,75 132,75" /><text dy=".3em" text-anchor="middle" x="177.875" y="50">nums</text><rect class="list" height="50" width="40" x="305" y="25" /><text dy=".3em" text-anchor="middle" x="325" y="50">1</text><rect class="list" height="50" width="40" x="345" y="25" /><text dy=".3em" text-anchor="middle" x="365" y="50">2</text><rect class="list" height="50" width="40" x="385" y="25" /><text dy=".3em" text-anchor="middle" x="405" y="50">3</text><path class="arrow" d="M 230,50 C 248,50 248,50 267,50 C 286,50 286,50 305,50" fill="none" marker-end="url(#id78)" /><rect class="frame" height="200" rx="20" ry="20" width="230" x="25" y="100" /><text class="framelabel" dy=".3em" opacity="1" text-anchor="middle" x="140" y="125">augment_twice_good</text><polygon class="name" points="108,150 223.75,150 230,175 223.75,200 108,200" /><text dy=".3em" text-anchor="middle" x="165.875" y="175">a_list</text><path class="arrow" d="M 230,175 C 266,175 266,148 267,112 C 268,76 268,50 305,50" fill="none" marker-end="url(#id78)" /><polygon class="name" points="144,225 223.75,225 230,250 223.75,275 144,275" /><text dy=".3em" text-anchor="middle" x="183.875" y="250">val</text><circle class="int value" cx="330" cy="250" r="25" /><text dy=".3em" text-anchor="middle" x="330" y="250">7</text><path class="arrow" d="M 230,250 C 248,250 248,250 267,250 C 286,250 286,250 305,250" fill="none" marker-end="url(#id78)" /><rect class="list" height="50" width="40" x="305" y="150" /><text dy=".3em" text-anchor="middle" x="325" y="175">1</text><rect class="list" height="50" width="40" x="345" y="150" /><text dy=".3em" text-anchor="middle" x="365" y="175">2</text><rect class="list" height="50" width="40" x="385" y="150" /><text dy=".3em" text-anchor="middle" x="405" y="175">3</text><rect class="list" height="50" width="40" x="425" y="150" /><text dy=".3em" text-anchor="middle" x="445" y="175">7</text><rect class="list" height="50" width="40" x="465" y="150" /><text dy=".3em" text-anchor="middle" x="485" y="175">7</text></svg>
+    <svg baseProfile="full" height="325" version="1.1" width="550" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id78" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="132,25 223.75,25 230,50 223.75,75 132,75" /><text dy=".3em" text-anchor="middle" x="177.875" y="50">nums</text><rect class="list" height="50" width="40" x="305" y="25" /><text dy=".3em" text-anchor="middle" x="325" y="50">1</text><rect class="list" height="50" width="40" x="345" y="25" /><text dy=".3em" text-anchor="middle" x="365" y="50">2</text><rect class="list" height="50" width="40" x="385" y="25" /><text dy=".3em" text-anchor="middle" x="405" y="50">3</text><path class="arrow" d="M 230,50 C 248,50 248,50 267,50 C 286,50 286,50 305,50" fill="none" marker-end="url(#id78)" /><rect class="frame" height="200" rx="20" ry="20" width="230" x="25" y="100" /><text class="framelabel" dy=".3em" opacity="1" text-anchor="middle" x="140" y="125">append_twice_good</text><polygon class="name" points="108,150 223.75,150 230,175 223.75,200 108,200" /><text dy=".3em" text-anchor="middle" x="165.875" y="175">a_list</text><path class="arrow" d="M 230,175 C 266,175 266,148 267,112 C 268,76 268,50 305,50" fill="none" marker-end="url(#id78)" /><polygon class="name" points="144,225 223.75,225 230,250 223.75,275 144,275" /><text dy=".3em" text-anchor="middle" x="183.875" y="250">val</text><circle class="int value" cx="330" cy="250" r="25" /><text dy=".3em" text-anchor="middle" x="330" y="250">7</text><path class="arrow" d="M 230,250 C 248,250 248,250 267,250 C 286,250 286,250 305,250" fill="none" marker-end="url(#id78)" /><rect class="list" height="50" width="40" x="305" y="150" /><text dy=".3em" text-anchor="middle" x="325" y="175">1</text><rect class="list" height="50" width="40" x="345" y="150" /><text dy=".3em" text-anchor="middle" x="365" y="175">2</text><rect class="list" height="50" width="40" x="385" y="150" /><text dy=".3em" text-anchor="middle" x="405" y="175">3</text><rect class="list" height="50" width="40" x="425" y="150" /><text dy=".3em" text-anchor="middle" x="445" y="175">7</text><rect class="list" height="50" width="40" x="465" y="150" /><text dy=".3em" text-anchor="middle" x="485" y="175">7</text></svg>
     </div>
     </div>
     <div class="overlay incremental">
     <pre class="python tophalf" select="2">
-        def augment_twice_good(a_list, val):
+        def append_twice_good(a_list, val):
             a_list = a_list + [val, val]
             return a_list
 
         nums = [1, 2, 3]
-        nums = augment_twice_good(nums, 7)
+        nums = append_twice_good(nums, 7)
         print(nums)         # [1, 2, 3, 7, 7]
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
-    <svg baseProfile="full" height="325" version="1.1" width="550" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id79" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="132,25 223.75,25 230,50 223.75,75 132,75" /><text dy=".3em" text-anchor="middle" x="177.875" y="50">nums</text><rect class="list" height="50" width="40" x="305" y="25" /><text dy=".3em" text-anchor="middle" x="325" y="50">1</text><rect class="list" height="50" width="40" x="345" y="25" /><text dy=".3em" text-anchor="middle" x="365" y="50">2</text><rect class="list" height="50" width="40" x="385" y="25" /><text dy=".3em" text-anchor="middle" x="405" y="50">3</text><path class="arrow" d="M 230,50 C 248,50 248,50 267,50 C 286,50 286,50 305,50" fill="none" marker-end="url(#id79)" /><rect class="frame" height="200" rx="20" ry="20" width="230" x="25" y="100" /><text class="framelabel" dy=".3em" opacity="1" text-anchor="middle" x="140" y="125">augment_twice_good</text><polygon class="name" points="144,225 223.75,225 230,250 223.75,275 144,275" /><text dy=".3em" text-anchor="middle" x="183.875" y="250">val</text><circle class="int value" cx="330" cy="250" r="25" /><text dy=".3em" text-anchor="middle" x="330" y="250">7</text><path class="arrow" d="M 230,250 C 248,250 248,250 267,250 C 286,250 286,250 305,250" fill="none" marker-end="url(#id79)" /><polygon class="name" points="108,150 223.75,150 230,175 223.75,200 108,200" /><text dy=".3em" text-anchor="middle" x="165.875" y="175">a_list</text><rect class="list" height="50" width="40" x="305" y="150" /><text dy=".3em" text-anchor="middle" x="325" y="175">1</text><rect class="list" height="50" width="40" x="345" y="150" /><text dy=".3em" text-anchor="middle" x="365" y="175">2</text><rect class="list" height="50" width="40" x="385" y="150" /><text dy=".3em" text-anchor="middle" x="405" y="175">3</text><rect class="list" height="50" width="40" x="425" y="150" /><text dy=".3em" text-anchor="middle" x="445" y="175">7</text><rect class="list" height="50" width="40" x="465" y="150" /><text dy=".3em" text-anchor="middle" x="485" y="175">7</text><path class="arrow" d="M 230,175 C 248,175 248,175 267,175 C 286,175 286,175 305,175" fill="none" marker-end="url(#id79)" /></svg>
+    <svg baseProfile="full" height="325" version="1.1" width="550" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id79" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="132,25 223.75,25 230,50 223.75,75 132,75" /><text dy=".3em" text-anchor="middle" x="177.875" y="50">nums</text><rect class="list" height="50" width="40" x="305" y="25" /><text dy=".3em" text-anchor="middle" x="325" y="50">1</text><rect class="list" height="50" width="40" x="345" y="25" /><text dy=".3em" text-anchor="middle" x="365" y="50">2</text><rect class="list" height="50" width="40" x="385" y="25" /><text dy=".3em" text-anchor="middle" x="405" y="50">3</text><path class="arrow" d="M 230,50 C 248,50 248,50 267,50 C 286,50 286,50 305,50" fill="none" marker-end="url(#id79)" /><rect class="frame" height="200" rx="20" ry="20" width="230" x="25" y="100" /><text class="framelabel" dy=".3em" opacity="1" text-anchor="middle" x="140" y="125">append_twice_good</text><polygon class="name" points="144,225 223.75,225 230,250 223.75,275 144,275" /><text dy=".3em" text-anchor="middle" x="183.875" y="250">val</text><circle class="int value" cx="330" cy="250" r="25" /><text dy=".3em" text-anchor="middle" x="330" y="250">7</text><path class="arrow" d="M 230,250 C 248,250 248,250 267,250 C 286,250 286,250 305,250" fill="none" marker-end="url(#id79)" /><polygon class="name" points="108,150 223.75,150 230,175 223.75,200 108,200" /><text dy=".3em" text-anchor="middle" x="165.875" y="175">a_list</text><rect class="list" height="50" width="40" x="305" y="150" /><text dy=".3em" text-anchor="middle" x="325" y="175">1</text><rect class="list" height="50" width="40" x="345" y="150" /><text dy=".3em" text-anchor="middle" x="365" y="175">2</text><rect class="list" height="50" width="40" x="385" y="150" /><text dy=".3em" text-anchor="middle" x="405" y="175">3</text><rect class="list" height="50" width="40" x="425" y="150" /><text dy=".3em" text-anchor="middle" x="445" y="175">7</text><rect class="list" height="50" width="40" x="465" y="150" /><text dy=".3em" text-anchor="middle" x="485" y="175">7</text><path class="arrow" d="M 230,175 C 248,175 248,175 267,175 C 286,175 286,175 305,175" fill="none" marker-end="url(#id79)" /></svg>
     </div>
     </div>
     <div class="overlay incremental">
     <pre class="python tophalf" select="3">
-        def augment_twice_good(a_list, val):
+        def append_twice_good(a_list, val):
             a_list = a_list + [val, val]
             return a_list
 
         nums = [1, 2, 3]
-        nums = augment_twice_good(nums, 7)
+        nums = append_twice_good(nums, 7)
         print(nums)         # [1, 2, 3, 7, 7]
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
-    <svg baseProfile="full" height="325" version="1.1" width="550" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id80" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="132,25 223.75,25 230,50 223.75,75 132,75" /><text dy=".3em" text-anchor="middle" x="177.875" y="50">nums</text><rect class="list" height="50" width="40" x="305" y="25" /><text dy=".3em" text-anchor="middle" x="325" y="50">1</text><rect class="list" height="50" width="40" x="345" y="25" /><text dy=".3em" text-anchor="middle" x="365" y="50">2</text><rect class="list" height="50" width="40" x="385" y="25" /><text dy=".3em" text-anchor="middle" x="405" y="50">3</text><path class="arrow" d="M 230,50 C 248,50 248,50 267,50 C 286,50 286,50 305,50" fill="none" marker-end="url(#id80)" /><rect class="frame" height="200" rx="20" ry="20" width="230" x="25" y="100" /><text class="framelabel" dy=".3em" opacity="1" text-anchor="middle" x="140" y="125">augment_twice_good</text><polygon class="name" opacity="0.25" points="144,225 223.75,225 230,250 223.75,275 144,275" /><text dy=".3em" opacity="0.25" text-anchor="middle" x="183.875" y="250">val</text><circle class="int value" cx="330" cy="250" opacity="0.25" r="25" /><text dy=".3em" opacity="0.25" text-anchor="middle" x="330" y="250">7</text><path class="arrow" d="M 230,250 C 248,250 248,250 267,250 C 286,250 286,250 305,250" fill="none" marker-end="url(#id80)" opacity="0.25" /><polygon class="name" opacity="0.25" points="108,150 223.75,150 230,175 223.75,200 108,200" /><text dy=".3em" opacity="0.25" text-anchor="middle" x="165.875" y="175">a_list</text><rect class="list" height="50" width="40" x="305" y="150" /><text dy=".3em" text-anchor="middle" x="325" y="175">1</text><rect class="list" height="50" width="40" x="345" y="150" /><text dy=".3em" text-anchor="middle" x="365" y="175">2</text><rect class="list" height="50" width="40" x="385" y="150" /><text dy=".3em" text-anchor="middle" x="405" y="175">3</text><rect class="list" height="50" width="40" x="425" y="150" /><text dy=".3em" text-anchor="middle" x="445" y="175">7</text><rect class="list" height="50" width="40" x="465" y="150" /><text dy=".3em" text-anchor="middle" x="485" y="175">7</text><path class="arrow" d="M 230,175 C 248,175 248,175 267,175 C 286,175 286,175 305,175" fill="none" marker-end="url(#id80)" opacity="0.25" /><polygon class="name" points="242.5,162.5 264.375,162.5 267.5,175 264.375,187.5 242.5,187.5" /><path class="arrow" d="M 267,175 C 276,175 276,175 286,175 C 295,175 295,175 305,175" fill="none" marker-end="url(#id80)" /></svg>
+    <svg baseProfile="full" height="325" version="1.1" width="550" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id80" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="132,25 223.75,25 230,50 223.75,75 132,75" /><text dy=".3em" text-anchor="middle" x="177.875" y="50">nums</text><rect class="list" height="50" width="40" x="305" y="25" /><text dy=".3em" text-anchor="middle" x="325" y="50">1</text><rect class="list" height="50" width="40" x="345" y="25" /><text dy=".3em" text-anchor="middle" x="365" y="50">2</text><rect class="list" height="50" width="40" x="385" y="25" /><text dy=".3em" text-anchor="middle" x="405" y="50">3</text><path class="arrow" d="M 230,50 C 248,50 248,50 267,50 C 286,50 286,50 305,50" fill="none" marker-end="url(#id80)" /><rect class="frame" height="200" rx="20" ry="20" width="230" x="25" y="100" /><text class="framelabel" dy=".3em" opacity="1" text-anchor="middle" x="140" y="125">append_twice_good</text><polygon class="name" opacity="0.25" points="144,225 223.75,225 230,250 223.75,275 144,275" /><text dy=".3em" opacity="0.25" text-anchor="middle" x="183.875" y="250">val</text><circle class="int value" cx="330" cy="250" opacity="0.25" r="25" /><text dy=".3em" opacity="0.25" text-anchor="middle" x="330" y="250">7</text><path class="arrow" d="M 230,250 C 248,250 248,250 267,250 C 286,250 286,250 305,250" fill="none" marker-end="url(#id80)" opacity="0.25" /><polygon class="name" opacity="0.25" points="108,150 223.75,150 230,175 223.75,200 108,200" /><text dy=".3em" opacity="0.25" text-anchor="middle" x="165.875" y="175">a_list</text><rect class="list" height="50" width="40" x="305" y="150" /><text dy=".3em" text-anchor="middle" x="325" y="175">1</text><rect class="list" height="50" width="40" x="345" y="150" /><text dy=".3em" text-anchor="middle" x="365" y="175">2</text><rect class="list" height="50" width="40" x="385" y="150" /><text dy=".3em" text-anchor="middle" x="405" y="175">3</text><rect class="list" height="50" width="40" x="425" y="150" /><text dy=".3em" text-anchor="middle" x="445" y="175">7</text><rect class="list" height="50" width="40" x="465" y="150" /><text dy=".3em" text-anchor="middle" x="485" y="175">7</text><path class="arrow" d="M 230,175 C 248,175 248,175 267,175 C 286,175 286,175 305,175" fill="none" marker-end="url(#id80)" opacity="0.25" /><polygon class="name" points="242.5,162.5 264.375,162.5 267.5,175 264.375,187.5 242.5,187.5" /><path class="arrow" d="M 267,175 C 276,175 276,175 286,175 C 295,175 295,175 305,175" fill="none" marker-end="url(#id80)" /></svg>
     </div>
     </div>
     <div class="overlay incremental">
     <pre class="python tophalf" select="6">
-        def augment_twice_good(a_list, val):
+        def append_twice_good(a_list, val):
             a_list = a_list + [val, val]
             return a_list
 
         nums = [1, 2, 3]
-        nums = augment_twice_good(nums, 7)
+        nums = append_twice_good(nums, 7)
         print(nums)         # [1, 2, 3, 7, 7]
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
-    <svg baseProfile="full" height="325" version="1.1" width="550" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id81" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="132,25 223.75,25 230,50 223.75,75 132,75" /><text dy=".3em" text-anchor="middle" x="177.875" y="50">nums</text><rect class="list" height="50" width="40" x="305" y="25" /><text dy=".3em" text-anchor="middle" x="325" y="50">1</text><rect class="list" height="50" width="40" x="345" y="25" /><text dy=".3em" text-anchor="middle" x="365" y="50">2</text><rect class="list" height="50" width="40" x="385" y="25" /><text dy=".3em" text-anchor="middle" x="405" y="50">3</text><path class="arrow" d="M 230,50 C 248,50 248,50 267,50 C 286,50 286,50 305,50" fill="none" marker-end="url(#id81)" /><rect class="frame" height="200" opacity="0.25" rx="20" ry="20" width="230" x="25" y="100" /><text class="framelabel" dy=".3em" opacity="0.25" text-anchor="middle" x="140" y="125">augment_twice_good</text><rect class="list" height="50" width="40" x="305" y="150" /><text dy=".3em" text-anchor="middle" x="325" y="175">1</text><rect class="list" height="50" width="40" x="345" y="150" /><text dy=".3em" text-anchor="middle" x="365" y="175">2</text><rect class="list" height="50" width="40" x="385" y="150" /><text dy=".3em" text-anchor="middle" x="405" y="175">3</text><rect class="list" height="50" width="40" x="425" y="150" /><text dy=".3em" text-anchor="middle" x="445" y="175">7</text><rect class="list" height="50" width="40" x="465" y="150" /><text dy=".3em" text-anchor="middle" x="485" y="175">7</text><polygon class="name" points="242.5,162.5 264.375,162.5 267.5,175 264.375,187.5 242.5,187.5" /><path class="arrow" d="M 267,175 C 276,175 276,175 286,175 C 295,175 295,175 305,175" fill="none" marker-end="url(#id81)" /></svg>
+    <svg baseProfile="full" height="325" version="1.1" width="550" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><marker id="id81" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0,0,10,10"><path d="M 0,0 L 10,5 L 0,10 L 1,5 z" fill="black" stroke="none" /></marker></defs><polygon class="name" points="132,25 223.75,25 230,50 223.75,75 132,75" /><text dy=".3em" text-anchor="middle" x="177.875" y="50">nums</text><rect class="list" height="50" width="40" x="305" y="25" /><text dy=".3em" text-anchor="middle" x="325" y="50">1</text><rect class="list" height="50" width="40" x="345" y="25" /><text dy=".3em" text-anchor="middle" x="365" y="50">2</text><rect class="list" height="50" width="40" x="385" y="25" /><text dy=".3em" text-anchor="middle" x="405" y="50">3</text><path class="arrow" d="M 230,50 C 248,50 248,50 267,50 C 286,50 286,50 305,50" fill="none" marker-end="url(#id81)" /><rect class="frame" height="200" opacity="0.25" rx="20" ry="20" width="230" x="25" y="100" /><text class="framelabel" dy=".3em" opacity="0.25" text-anchor="middle" x="140" y="125">append_twice_good</text><rect class="list" height="50" width="40" x="305" y="150" /><text dy=".3em" text-anchor="middle" x="325" y="175">1</text><rect class="list" height="50" width="40" x="345" y="150" /><text dy=".3em" text-anchor="middle" x="365" y="175">2</text><rect class="list" height="50" width="40" x="385" y="150" /><text dy=".3em" text-anchor="middle" x="405" y="175">3</text><rect class="list" height="50" width="40" x="425" y="150" /><text dy=".3em" text-anchor="middle" x="445" y="175">7</text><rect class="list" height="50" width="40" x="465" y="150" /><text dy=".3em" text-anchor="middle" x="485" y="175">7</text><polygon class="name" points="242.5,162.5 264.375,162.5 267.5,175 264.375,187.5 242.5,187.5" /><path class="arrow" d="M 267,175 C 276,175 276,175 286,175 C 295,175 295,175 305,175" fill="none" marker-end="url(#id81)" /></svg>
     </div>
     </div>
     <div class="overlay incremental">
     <pre class="python tophalf" select="6">
-        def augment_twice_good(a_list, val):
+        def append_twice_good(a_list, val):
             a_list = a_list + [val, val]
             return a_list
 
         nums = [1, 2, 3]
-        nums = augment_twice_good(nums, 7)
+        nums = append_twice_good(nums, 7)
         print(nums)         # [1, 2, 3, 7, 7]
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
@@ -2458,12 +2567,12 @@ nums = [ 10*x for x in nums ]
     </div>
     <div class="overlay incremental">
     <pre class="python tophalf" select="7">
-        def augment_twice_good(a_list, val):
+        def append_twice_good(a_list, val):
             a_list = a_list + [val, val]
             return a_list
 
         nums = [1, 2, 3]
-        nums = augment_twice_good(nums, 7)
+        nums = append_twice_good(nums, 7)
         print(nums)         # [1, 2, 3, 7, 7]
         </pre>
     <div class="opaque bottomhalf" style="text-align:center">
@@ -2475,26 +2584,58 @@ nums = [ 10*x for x in nums ]
     <!--[[[end]]]-->
 </div>
 
+<div class="text"><!-- {{{ -->
+
+<p>Here we have nearly the same function, but once we've made our new a_list,
+we return it:</p>
+
+<code lang="py">
+def append_twice_good(a_list, val):
+    a_list = a_list + [val, val]
+    return a_list
+
+nums = [1, 2, 3]
+nums = append_twice_good(nums, 7)
+print(nums)         # [1, 2, 3, 7, 7]
+ </code>
+
+<p>Then in the caller, we don't simply call append_twice_good, we assign its
+return value to nums again.  The function has made a new list, and by returning
+it, we can decide what to do with it. In this case, we want nums to be the new
+list, so we simply assign it to nums.  The old value is reclaimed, and the new
+value remains.</p>
+
+</div><!-- }}} -->
+
 <div class="slide">
-    <h1>Three augment_twice functions</h1>
+    <h1>Three append_twice functions</h1>
     <pre class="python">
-        def augment_twice(a_list, val):
+        def append_twice(a_list, val):
             """Mutates argument."""
             a_list.append(val)
             a_list.append(val)
     </pre>
     <pre class="python">
-        def augment_twice_bad(a_list, val):
+        def append_twice_bad(a_list, val):
             """Useless!"""
             a_list = a_list + [val, val]
     </pre>
     <pre class="python">
-        def augment_twice_good(a_list, val):
+        def append_twice_good(a_list, val):
             """Returns new list."""
             a_list = a_list + [val, val]
             return a_list
     </pre>
 </div>
+
+<div class="text"><!-- {{{ -->
+
+<p>Here are the three versions of the function, for comparison.  The first
+function mutates the list in-place.  The second version makes a new list but
+fails to do anything useful with it.  The third version makes a new list, and
+returns it so that we can use it.</p>
+
+</div><!-- }}} -->
 
 <div class="slide">
     <h1>Any name &rarr; any value @ any time</h1>
@@ -2740,10 +2881,15 @@ as pretty as mine, but it works on your code!</p>
     <h2><span class="punct">http://</span>bit.ly<span class="punct">/</span>pynames1</h2>
 </div>
 
+<div class="text"><!-- {{{ -->
+
 <p>Thanks for your attention, I hope this has been helpful.</p>
 
 <p>Python's mechanisms are very simple, often simpler than people believe.
 Understand them, and your programs will not surprise you in bad ways!</p>
+
+</div><!-- }}} -->
+
 
 <!-- ** Layouts {{{ -->
 <div class="layout" data-name="default">
