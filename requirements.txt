@@ -1,4 +1,4 @@
 cogapp
-Cupid
 lxml
 cssselect
+-e ../../cupid

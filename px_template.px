@@ -3,6 +3,13 @@
 <what when="20150329T182200">Created</what>
 </history>
 
+<meta>
+
+<description>Assignment in Python might surprise you. How do names and values
+work?  This presentation explains it all.</description>
+<img src="text/names1/card.png" alt="A sample from the presentation, showing code and a reference diagram" />
+</meta>
+
 <p>This is a presentation I gave at PyCon 2015 in Montreal.  You can read the slides
 and text on this page, or open the <a href="text/names1/names1.html">actual
 presentation</a> in your browser (use right and left arrows to advance the
@@ -11,7 +18,9 @@ see on this page, click through the <a href="text/names1/names1.html">presentati
 to see them in their full glory.
 You can also watch the video of me presenting it:</p>
 
-<youtube_jump video='_AEJHKGk9ns' />
+<figurep aspect="16x9">
+    <youtube_embed video='_AEJHKGk9ns' />
+</figurep>
 
 <p>Also, this is a re-working of an earlier piece with the same name:
 <a pref="text/names.px"/>.  It covers the same ideas, but with different
